@@ -1,13 +1,36 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Layout from "@/components/layout/Layout";
+import HeroCarousel from "@/components/home/HeroCarousel";
+import NewsSection from "@/components/home/NewsSection";
+import AboutSection from "@/components/home/AboutSection";
+import QuickAccessSection from "@/components/home/QuickAccessSection";
+import PublicationsSection from "@/components/home/PublicationsSection";
+import DirectorSection from "@/components/home/DirectorSection";
+import OrganizationTabs from "@/components/home/OrganizationTabs";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <Layout>
+      {/* Hero Carousel */}
+      <HeroCarousel />
+
+      {/* News Section - À la une */}
+      <NewsSection />
+
+      {/* About Section */}
+      <AboutSection />
+
+      {/* Quick Access - Services/Missions */}
+      <QuickAccessSection />
+
+      {/* Director Quote */}
+      <DirectorSection />
+
+      {/* Organization Tabs */}
+      <OrganizationTabs />
+
+      {/* Publications */}
+      <PublicationsSection />
+    </Layout>
   );
 };
 
