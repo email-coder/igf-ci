@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Calendar } from "lucide-react";
+import actuCooperationBenin from "@/assets/actu-cooperation-benin.png";
+import actuFormationEvaluation from "@/assets/actu-formation-evaluation.png";
+import actuVoyageMaroc from "@/assets/actu-voyage-maroc.png";
+import actuAuditPtua from "@/assets/actu-audit-ptua.png";
 
 interface NewsItem {
   id: number;
@@ -14,19 +18,19 @@ interface NewsItem {
 const newsItems: NewsItem[] = [
   {
     id: 1,
-    title: "Départ à la retraite 2024 : l'IGF honore quatre de ses Agents",
-    excerpt: "Admis à faire valoir leurs droits à la retraite en cette fin d'année 2024, quatre agents de l'IGF ont été honorés lors d'une cérémonie officielle.",
-    date: "24 décembre 2024",
-    image: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=600&h=400&fit=crop",
-    category: "Événement",
-    slug: "depart-retraite-2024",
+    title: "Coopération avec l'Inspecteur Général des Finances du Bénin",
+    excerpt: "Madame l'Inspecteur Général des Finances a eu une séance de travail avec son homologue du Bénin pour renforcer la coopération entre les deux institutions.",
+    date: "8 octobre 2024",
+    image: actuCooperationBenin,
+    category: "Coopération",
+    slug: "cooperation-benin",
   },
   {
     id: 2,
     title: "Formation des agents à l'évaluation des politiques publiques",
     excerpt: "Vingt-six cadres de l'IGF ont été formés sur l'évaluation des politiques publiques du 28 octobre au 8 novembre 2024.",
     date: "13 novembre 2024",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop",
+    image: actuFormationEvaluation,
     category: "Formation",
     slug: "formation-evaluation-politiques",
   },
@@ -35,18 +39,18 @@ const newsItems: NewsItem[] = [
     title: "Voyage d'études au Maroc des responsables des organes de contrôle",
     excerpt: "Une délégation s'est rendue à Rabat du 14 au 18 octobre 2024 dans le cadre du Schéma Directeur de la Réforme des Finances Publiques.",
     date: "25 octobre 2024",
-    image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=400&fit=crop",
+    image: actuVoyageMaroc,
     category: "Coopération",
     slug: "voyage-etudes-maroc",
   },
   {
     id: 4,
-    title: "Échange avec le programme GAVI sur la vaccination",
-    excerpt: "Une délégation du programme GAVI a échangé avec l'IGF sur la mise en œuvre des activités de vaccination financées.",
-    date: "29 octobre 2024",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
-    category: "Partenariat",
-    slug: "echange-programme-gavi",
+    title: "Projet PTUA : Audit des échangeurs du boulevard Mitterrand",
+    excerpt: "Mission d'audit des activités de construction des échangeurs du boulevard Mitterrand dans le cadre du Projet de Transport Urbain d'Abidjan.",
+    date: "2 octobre 2024",
+    image: actuAuditPtua,
+    category: "Mission",
+    slug: "audit-ptua",
   },
 ];
 
