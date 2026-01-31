@@ -2,19 +2,23 @@ import Layout from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { ChevronRight, Calendar, ArrowRight } from "lucide-react";
 import { useState } from "react";
+import actuCooperationBenin from "@/assets/actu-cooperation-benin.png";
+import actuFormationEvaluation from "@/assets/actu-formation-evaluation.png";
+import actuVoyageMaroc from "@/assets/actu-voyage-maroc.png";
+import actuAuditPtua from "@/assets/actu-audit-ptua.png";
 
 const categories = ["Toutes", "Événement", "Formation", "Coopération", "Partenariat", "Mission"];
 
 const allNews = [
   {
     id: 1,
-    title: "Départ à la retraite 2024 : l'IGF honore quatre de ses Agents",
-    excerpt: "Admis à faire valoir leurs droits à la retraite en cette fin d'année 2024, quatre agents de l'IGF ont été honorés lors d'une cérémonie officielle.",
-    content: "Admis à faire valoir leurs droits à la retraite en cette fin d'année 2024, Mme BAROAN née CISSE Marie-Claude Brigitte, Chef de la Division I, Contrôle du bon Fonctionnement des...",
-    date: "24 décembre 2024",
-    image: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=600&h=400&fit=crop",
-    category: "Événement",
-    slug: "depart-retraite-2024",
+    title: "Coopération avec l'Inspecteur Général des Finances du Bénin",
+    excerpt: "Madame l'Inspecteur Général des Finances a eu une séance de travail avec son homologue du Bénin pour renforcer la coopération.",
+    content: "Madame l'Inspecteur Général des Finances, Marie Hélène SARASSORO épse FADIGA, a eu une séance de travail avec son homologue du Bénin...",
+    date: "8 octobre 2024",
+    image: actuCooperationBenin,
+    category: "Coopération",
+    slug: "cooperation-benin",
   },
   {
     id: 2,
@@ -22,7 +26,7 @@ const allNews = [
     excerpt: "Vingt-six cadres de l'IGF ont été formés sur l'évaluation des politiques publiques du 28 octobre au 8 novembre 2024.",
     content: "Vingt-six cadres de l'Inspection Générale des Finances ont été formés, du 28 octobre au 8 novembre 2024, sur l'évaluation des politiques publiques à IVOTEL Plateau.",
     date: "13 novembre 2024",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop",
+    image: actuFormationEvaluation,
     category: "Formation",
     slug: "formation-evaluation-politiques",
   },
@@ -32,37 +36,17 @@ const allNews = [
     excerpt: "Une délégation s'est rendue à Rabat du 14 au 18 octobre 2024 dans le cadre du SDRFP.",
     content: "Le Gouvernement ivoirien a adopté en juin 2022, le Schéma Directeur de la Réforme des Finances Publiques (SDRFP) 2022-2024.",
     date: "25 octobre 2024",
-    image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=400&fit=crop",
+    image: actuVoyageMaroc,
     category: "Coopération",
     slug: "voyage-etudes-maroc",
   },
   {
     id: 4,
-    title: "Échange avec le programme GAVI sur la vaccination",
-    excerpt: "Une délégation du programme GAVI a échangé avec l'IGF sur les activités de vaccination.",
-    content: "Dans le cadre de la mise en œuvre des activités de vaccination financées par GAVI...",
-    date: "29 octobre 2024",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
-    category: "Partenariat",
-    slug: "echange-programme-gavi",
-  },
-  {
-    id: 5,
-    title: "Coopération avec l'Inspecteur Général des Finances du Bénin",
-    excerpt: "Madame l'Inspecteur Général des Finances a eu une séance de travail avec son homologue du Bénin.",
-    content: "Madame l'Inspecteur Général des Finances, Marie Hélène SARASSORO épse FADIGA, a eu une séance de travail...",
-    date: "8 octobre 2024",
-    image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&h=400&fit=crop",
-    category: "Coopération",
-    slug: "cooperation-benin",
-  },
-  {
-    id: 6,
     title: "Projet PTUA : Audit des échangeurs du boulevard Mitterrand",
     excerpt: "Mission d'audit des activités de construction des échangeurs du boulevard Mitterrand.",
     content: "La Côte d'Ivoire a signé, le 29 décembre 2016 des Accords de Financement avec la BAD...",
     date: "2 octobre 2024",
-    image: "https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=600&h=400&fit=crop",
+    image: actuAuditPtua,
     category: "Mission",
     slug: "audit-ptua",
   },

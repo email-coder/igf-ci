@@ -13,7 +13,7 @@ const Footer = () => {
             <img
               src={logoIGFBlanc}
               alt="IGF"
-              className="h-16 w-auto mb-6"
+              className="h-24 w-auto mb-6"
             />
             <p className="text-white/70 text-sm leading-relaxed">
               L'Inspection Générale des Finances est une structure de gouvernance 
