@@ -156,7 +156,7 @@
 
   /* Carte actualité */
   .news-card {
-    @apply group relative overflow-hidden bg-card transition-all duration-300;
+    @apply relative overflow-hidden bg-card transition-all duration-300;
   }
 
   .news-card:hover {
@@ -168,7 +168,7 @@
   }
 
   .news-card-image img {
-    @apply h-full w-full object-cover transition-transform duration-500 group-hover:scale-105;
+    @apply h-full w-full object-cover transition-transform duration-500;
   }
 
   /* Navigation institutionnelle */
