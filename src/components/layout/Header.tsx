@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Search, ChevronDown } from "lucide-react";
 import logoIGF from "@/assets/logo-igf-couleur.png";
+import motifIGF from "@/assets/motif-igf.png";
+import SearchModal from "./SearchModal";
 
 const navigationItems = [
   { label: "Accueil", href: "/" },
@@ -35,47 +37,95 @@ const navigationItems = [
       { label: "Textes officiels", href: "/publications/textes" },
     ],
   },
+  { label: "Documents", href: "/documents" },
   { label: "Contact", href: "/contact" },
 ];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const location = useLocation();
 
   return (
-    <header className="sticky top-0 z-50 w-full">
-      {/* Top bar */}
-      <div className="bg-section-dark text-hero-foreground">
-        <div className="container flex items-center justify-between py-2 text-sm">
-          <span className="hidden md:block">
-            Ministère des Finances et du Budget - République de Côte d'Ivoire
-          </span>
-          <div className="flex items-center gap-4">
-            <a href="tel:+22527222222" className="hover:text-primary transition-colors">
-              +225 27 22 22 22
-            </a>
-            <span className="hidden md:inline">|</span>
-            <a href="mailto:contact@igf.finances.gouv.ci" className="hidden md:block hover:text-primary transition-colors">
-              contact@igf.finances.gouv.ci
-            </a>
+    <>
+      <header className="sticky top-0 z-50 w-full">
+        {/* Top bar - style Cour des Comptes */}
+        <div className="bg-section-dark text-hero-foreground relative overflow-hidden">
+          {/* Motif background */}
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage: `url(${motifIGF})`,
+              backgroundSize: "auto 100%",
+              backgroundPosition: "right center",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
+          
+          <div className="container relative z-10 flex items-center justify-between py-4">
+            {/* Logo + Title */}
+            <Link to="/" className="flex items-center gap-4">
+              <img
+                src={logoIGF}
+                alt="Inspection Générale des Finances"
+                className="h-20 md:h-24 lg:h-28 w-auto"
+              />
+              <div className="hidden md:block border-l border-white/30 pl-4">
+                <span className="block text-white/80 text-sm">République de Côte d'Ivoire</span>
+                <span className="block text-white font-heading text-lg lg:text-xl">
+                  Ministère des Finances et du Budget
+                </span>
+              </div>
+            </Link>
+
+            {/* Right side links */}
+            <div className="flex items-center gap-6">
+              <div className="hidden lg:flex items-center gap-4 text-sm">
+                <Link to="/actualites" className="text-white/80 hover:text-white transition-colors">
+                  Actualités
+                </Link>
+                <span className="text-white/40">|</span>
+                <Link to="/contact" className="text-white/80 hover:text-white transition-colors">
+                  Nous contacter
+                </Link>
+              </div>
+              
+              {/* Search button */}
+              <button
+                onClick={() => setIsSearchOpen(true)}
+                className="p-2 hover:bg-white/10 rounded-full transition-colors"
+                aria-label="Rechercher"
+              >
+                <Search className="h-5 w-5 text-white" />
+              </button>
+
+              {/* Mobile menu button */}
+              <button
+                className="lg:hidden p-2 hover:bg-white/10 rounded"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {isMenuOpen ? (
+                  <X className="h-6 w-6 text-white" />
+                ) : (
+                  <Menu className="h-6 w-6 text-white" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Main header */}
-      <div className="bg-background border-b border-border">
-        <div className="container flex items-center justify-between py-4">
-          <Link to="/" className="flex items-center gap-4">
-            <img
-              src={logoIGF}
-              alt="Inspection Générale des Finances"
-              className="h-20 md:h-28 w-auto"
-            />
-          </Link>
+        {/* Slogan banner */}
+        <div className="bg-primary text-primary-foreground py-2 text-center">
+          <p className="font-heading text-sm md:text-base italic">
+            "Un instrument d'appui à la promotion de la bonne gouvernance économique et financière"
+          </p>
+        </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1">
+        {/* Main navigation */}
+        <nav className="bg-section-dark hidden lg:block border-t border-white/10">
+          <div className="container flex items-center justify-center">
             {navigationItems.map((item) => (
               <div
                 key={item.label}
@@ -85,8 +135,8 @@ const Header = () => {
               >
                 <Link
                   to={item.href}
-                  className={`flex items-center gap-1 px-4 py-3 text-sm font-medium uppercase tracking-wide transition-colors hover:text-primary ${
-                    location.pathname === item.href ? "text-primary" : "text-foreground"
+                  className={`nav-link flex items-center gap-1 ${
+                    location.pathname === item.href ? "active" : ""
                   }`}
                 >
                   {item.label}
@@ -95,12 +145,12 @@ const Header = () => {
 
                 {/* Dropdown */}
                 {item.children && openDropdown === item.label && (
-                  <div className="absolute left-0 top-full w-64 bg-background border border-border shadow-lg animate-fade-in">
+                  <div className="absolute left-0 top-full w-64 bg-background border border-border shadow-xl animate-fade-in z-50">
                     {item.children.map((child) => (
                       <Link
                         key={child.label}
                         to={child.href}
-                        className="block px-4 py-3 text-sm hover:bg-accent hover:text-accent-foreground transition-colors"
+                        className="block px-4 py-3 text-sm hover:bg-accent hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary"
                       >
                         {child.label}
                       </Link>
@@ -109,63 +159,46 @@ const Header = () => {
                 )}
               </div>
             ))}
+          </div>
+        </nav>
 
-            <button className="ml-4 p-2 hover:bg-accent rounded transition-colors">
-              <Search className="h-5 w-5" />
-            </button>
-          </nav>
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="lg:hidden fixed inset-0 top-[180px] bg-background z-50 overflow-y-auto animate-fade-in">
+            <nav className="container py-6">
+              {navigationItems.map((item) => (
+                <div key={item.label} className="border-b border-border">
+                  <Link
+                    to={item.href}
+                    className="block py-4 text-lg font-medium hover:text-primary transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                  {item.children && (
+                    <div className="pb-4 pl-4">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.label}
+                          to={child.href}
+                          className="block py-2 text-muted-foreground hover:text-primary transition-colors"
+                          onClick={() => setIsMenuOpen(false)}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </nav>
+          </div>
+        )}
+      </header>
 
-          {/* Mobile menu button */}
-          <button
-            className="lg:hidden p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Slogan banner */}
-      <div className="slogan-banner hidden md:block">
-        <p className="font-heading text-base italic">
-          "Un instrument d'appui à la promotion de la bonne gouvernance économique et financière"
-        </p>
-      </div>
-
-      {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-[120px] bg-background z-50 overflow-y-auto animate-fade-in">
-          <nav className="container py-6">
-            {navigationItems.map((item) => (
-              <div key={item.label} className="border-b border-border">
-                <Link
-                  to={item.href}
-                  className="block py-4 text-lg font-medium"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-                {item.children && (
-                  <div className="pb-4 pl-4">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.label}
-                        to={child.href}
-                        className="block py-2 text-muted-foreground hover:text-primary"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </nav>
-        </div>
-      )}
-    </header>
+      {/* Search Modal */}
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+    </>
   );
 };
 
