@@ -1,5 +1,17 @@
 import { Link } from "react-router-dom";
-import { Search, FileText, AlertTriangle, Shield, Phone, Mail } from "lucide-react";
+import { 
+  Search, 
+  FileText, 
+  Shield, 
+  Phone, 
+  Mail, 
+  Scale,
+  TrendingUp,
+  Users,
+  ClipboardCheck,
+  Send
+} from "lucide-react";
+import motifIGF from "@/assets/motif-igf.png";
 
 const quickAccessItems = [
   {
@@ -9,25 +21,25 @@ const quickAccessItems = [
     link: "/missions/controle",
   },
   {
-    icon: FileText,
+    icon: ClipboardCheck,
     title: "Audit",
     description: "Audit et évaluation des procédures",
     link: "/missions/audit",
   },
   {
-    icon: Shield,
+    icon: TrendingUp,
     title: "Conseil",
     description: "Missions de conseil et d'appui",
     link: "/missions/conseil",
   },
   {
-    icon: AlertTriangle,
+    icon: Shield,
     title: "Lutte anti-corruption",
     description: "Brigade de Lutte contre la Corruption",
     link: "/missions/lutte-corruption",
   },
   {
-    icon: Mail,
+    icon: Send,
     title: "Plaintes",
     description: "Déposer une plainte ou dénonciation",
     link: "/plaintes",
@@ -42,13 +54,23 @@ const quickAccessItems = [
 
 const QuickAccessSection = () => {
   return (
-    <section className="py-16 bg-background">
-      <div className="container">
+    <section className="py-16 bg-background relative overflow-hidden">
+      {/* Motif background */}
+      <div
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `url(${motifIGF})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+
+      <div className="container relative z-10">
         <div className="text-center mb-12">
           <span className="text-primary font-medium uppercase tracking-wider text-sm">
             Services
           </span>
-          <h2 className="font-heading text-3xl md:text-4xl mt-2">
+          <h2 className="font-heading text-3xl md:text-4xl mt-2 text-foreground">
             Nos Missions
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
@@ -57,17 +79,17 @@ const QuickAccessSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 bg-border">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {quickAccessItems.map((item, index) => (
             <Link
               key={index}
               to={item.link}
-              className="quick-access-card bg-background group"
+              className="group flex flex-col items-center gap-4 p-8 text-center bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
             >
-              <div className="quick-access-icon group-hover:bg-igf-green-dark transition-colors">
-                <item.icon className="h-8 w-8" />
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                <item.icon className="h-7 w-7" />
               </div>
-              <h3 className="font-heading text-xl">{item.title}</h3>
+              <h3 className="font-heading text-xl text-foreground">{item.title}</h3>
               <p className="text-muted-foreground text-sm">{item.description}</p>
             </Link>
           ))}

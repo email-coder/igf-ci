@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Search, ChevronDown } from "lucide-react";
+import { Menu, X, Search, ChevronDown, ChevronRight } from "lucide-react";
 import logoIGF from "@/assets/logo-igf-couleur.png";
 import motifIGF from "@/assets/motif-igf.png";
 import SearchModal from "./SearchModal";
@@ -44,17 +44,22 @@ const navigationItems = [
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const location = useLocation();
+
+  const toggleMobileDropdown = (label: string) => {
+    setOpenMobileDropdown(openMobileDropdown === label ? null : label);
+  };
 
   return (
     <>
       <header className="sticky top-0 z-50 w-full">
-        {/* Top bar - style Cour des Comptes */}
-        <div className="bg-section-dark text-hero-foreground relative overflow-hidden">
-          {/* Motif background */}
+        {/* Top bar - fond blanc avec motif */}
+        <div className="bg-white relative overflow-hidden border-b border-border">
+          {/* Motif background subtil */}
           <div
-            className="absolute inset-0 opacity-10"
+            className="absolute inset-0 opacity-[0.03]"
             style={{
               backgroundImage: `url(${motifIGF})`,
               backgroundSize: "auto 100%",
@@ -63,17 +68,17 @@ const Header = () => {
             }}
           />
           
-          <div className="container relative z-10 flex items-center justify-between py-4">
+          <div className="container relative z-10 flex items-center justify-between py-6">
             {/* Logo + Title */}
-            <Link to="/" className="flex items-center gap-4">
+            <Link to="/" className="flex items-center gap-6">
               <img
                 src={logoIGF}
                 alt="Inspection Générale des Finances"
-                className="h-20 md:h-24 lg:h-28 w-auto"
+                className="h-24 md:h-28 lg:h-32 w-auto"
               />
-              <div className="hidden md:block border-l border-white/30 pl-4">
-                <span className="block text-white/80 text-sm">République de Côte d'Ivoire</span>
-                <span className="block text-white font-heading text-lg lg:text-xl">
+              <div className="hidden md:block border-l-2 border-primary/30 pl-6">
+                <span className="block text-muted-foreground text-sm">République de Côte d'Ivoire</span>
+                <span className="block text-foreground font-heading text-xl lg:text-2xl">
                   Ministère des Finances et du Budget
                 </span>
               </div>
@@ -82,11 +87,11 @@ const Header = () => {
             {/* Right side links */}
             <div className="flex items-center gap-6">
               <div className="hidden lg:flex items-center gap-4 text-sm">
-                <Link to="/actualites" className="text-white/80 hover:text-white transition-colors">
+                <Link to="/actualites" className="text-muted-foreground hover:text-primary transition-colors">
                   Actualités
                 </Link>
-                <span className="text-white/40">|</span>
-                <Link to="/contact" className="text-white/80 hover:text-white transition-colors">
+                <span className="text-border">|</span>
+                <Link to="/contact" className="text-muted-foreground hover:text-primary transition-colors">
                   Nous contacter
                 </Link>
               </div>
@@ -94,22 +99,22 @@ const Header = () => {
               {/* Search button */}
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-2 hover:bg-white/10 rounded-full transition-colors"
+                className="p-3 hover:bg-accent rounded-full transition-colors border border-border"
                 aria-label="Rechercher"
               >
-                <Search className="h-5 w-5 text-white" />
+                <Search className="h-5 w-5 text-foreground" />
               </button>
 
               {/* Mobile menu button */}
               <button
-                className="lg:hidden p-2 hover:bg-white/10 rounded"
+                className="lg:hidden p-2 hover:bg-accent rounded border border-border"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 aria-label="Toggle menu"
               >
                 {isMenuOpen ? (
-                  <X className="h-6 w-6 text-white" />
+                  <X className="h-6 w-6 text-foreground" />
                 ) : (
-                  <Menu className="h-6 w-6 text-white" />
+                  <Menu className="h-6 w-6 text-foreground" />
                 )}
               </button>
             </div>
@@ -123,8 +128,8 @@ const Header = () => {
           </p>
         </div>
 
-        {/* Main navigation */}
-        <nav className="bg-section-dark hidden lg:block border-t border-white/10">
+        {/* Main navigation - fond léger */}
+        <nav className="bg-muted hidden lg:block border-b border-border">
           <div className="container flex items-center justify-center">
             {navigationItems.map((item) => (
               <div
@@ -135,8 +140,8 @@ const Header = () => {
               >
                 <Link
                   to={item.href}
-                  className={`nav-link flex items-center gap-1 ${
-                    location.pathname === item.href ? "active" : ""
+                  className={`flex items-center gap-1 px-5 py-4 text-sm font-medium uppercase tracking-wider transition-colors hover:text-primary ${
+                    location.pathname === item.href ? "text-primary" : "text-foreground"
                   }`}
                 >
                   {item.label}
@@ -145,12 +150,12 @@ const Header = () => {
 
                 {/* Dropdown */}
                 {item.children && openDropdown === item.label && (
-                  <div className="absolute left-0 top-full w-64 bg-background border border-border shadow-xl animate-fade-in z-50">
+                  <div className="absolute left-0 top-full w-64 bg-card border border-border shadow-xl animate-fade-in z-50">
                     {item.children.map((child) => (
                       <Link
                         key={child.label}
                         to={child.href}
-                        className="block px-4 py-3 text-sm hover:bg-accent hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary"
+                        className="block px-4 py-3 text-sm text-foreground hover:bg-accent hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary"
                       >
                         {child.label}
                       </Link>
@@ -162,32 +167,55 @@ const Header = () => {
           </div>
         </nav>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Menu accordéon */}
         {isMenuOpen && (
-          <div className="lg:hidden fixed inset-0 top-[180px] bg-background z-50 overflow-y-auto animate-fade-in">
-            <nav className="container py-6">
+          <div className="lg:hidden fixed inset-0 top-[200px] bg-background z-50 overflow-y-auto animate-fade-in">
+            <nav className="container py-4">
               {navigationItems.map((item) => (
                 <div key={item.label} className="border-b border-border">
-                  <Link
-                    to={item.href}
-                    className="block py-4 text-lg font-medium hover:text-primary transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                  {item.children && (
-                    <div className="pb-4 pl-4">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.label}
-                          to={child.href}
-                          className="block py-2 text-muted-foreground hover:text-primary transition-colors"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
+                  {item.children ? (
+                    <>
+                      <button
+                        onClick={() => toggleMobileDropdown(item.label)}
+                        className="w-full flex items-center justify-between py-4 text-lg font-medium hover:text-primary transition-colors"
+                      >
+                        <span>{item.label}</span>
+                        <ChevronRight
+                          className={`h-5 w-5 transition-transform duration-200 ${
+                            openMobileDropdown === item.label ? "rotate-90" : ""
+                          }`}
+                        />
+                      </button>
+                      {openMobileDropdown === item.label && (
+                        <div className="pb-4 pl-4 space-y-1 animate-fade-in">
+                          <Link
+                            to={item.href}
+                            className="block py-2 text-muted-foreground hover:text-primary transition-colors"
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            Voir tout
+                          </Link>
+                          {item.children.map((child) => (
+                            <Link
+                              key={child.label}
+                              to={child.href}
+                              className="block py-2 text-muted-foreground hover:text-primary transition-colors"
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      to={item.href}
+                      className="block py-4 text-lg font-medium hover:text-primary transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
                   )}
                 </div>
               ))}

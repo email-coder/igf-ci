@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, ArrowRight, Pause, Play } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-igf.jpg";
+import heroImage from "@/assets/hero-abidjan.jpg";
 import motifIGF from "@/assets/motif-igf.png";
 
 interface Slide {
@@ -86,8 +86,8 @@ const HeroCarousel = () => {
           }}
         />
         
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30" />
+        {/* Gradient overlay - plus léger */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-transparent" />
         
         {/* Motif pattern overlay */}
         <div
@@ -103,7 +103,7 @@ const HeroCarousel = () => {
 
       {/* Content */}
       <div className="relative h-full container flex items-center">
-        <div className="max-w-3xl text-hero-foreground">
+        <div className="max-w-3xl text-white">
           {slides.map((slide, index) => (
             <div
               key={slide.id}
@@ -142,7 +142,7 @@ const HeroCarousel = () => {
                   {/* CTA Button */}
                   <Link
                     to={slide.link}
-                    className="inline-flex items-center gap-3 bg-primary hover:bg-igf-green-dark text-primary-foreground px-8 py-4 font-medium uppercase tracking-wider transition-all duration-300 group animate-slide-up"
+                    className="inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 font-medium uppercase tracking-wider transition-all duration-300 group animate-slide-up"
                     style={{ animationDelay: "400ms" }}
                   >
                     {slide.linkText}
@@ -162,7 +162,7 @@ const HeroCarousel = () => {
           <div className="flex items-center gap-3">
             <button
               onClick={prevSlide}
-              className="carousel-control"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-all hover:bg-white/40"
               aria-label="Slide précédente"
               disabled={isAnimating}
             >
@@ -170,14 +170,14 @@ const HeroCarousel = () => {
             </button>
             <button
               onClick={() => setIsPlaying(!isPlaying)}
-              className="carousel-control"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-all hover:bg-white/40"
               aria-label={isPlaying ? "Pause" : "Lecture"}
             >
               {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
             </button>
             <button
               onClick={nextSlide}
-              className="carousel-control"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white backdrop-blur-sm transition-all hover:bg-white/40"
               aria-label="Slide suivante"
               disabled={isAnimating}
             >
@@ -205,7 +205,7 @@ const HeroCarousel = () => {
 
             {/* Counter */}
             <div className="flex items-center gap-2">
-              <span className="text-hero-foreground font-heading text-2xl">
+              <span className="text-white font-heading text-2xl">
                 {String(currentSlide + 1).padStart(2, "0")}
               </span>
               <div className="w-16 h-0.5 bg-white/30 rounded-full overflow-hidden">

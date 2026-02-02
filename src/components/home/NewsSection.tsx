@@ -4,6 +4,7 @@ import actuCooperationBenin from "@/assets/actu-cooperation-benin.png";
 import actuFormationEvaluation from "@/assets/actu-formation-evaluation.png";
 import actuVoyageMaroc from "@/assets/actu-voyage-maroc.png";
 import actuAuditPtua from "@/assets/actu-audit-ptua.png";
+import motifIGF from "@/assets/motif-igf.png";
 
 interface NewsItem {
   id: number;
@@ -59,15 +60,25 @@ const NewsSection = () => {
   const otherNews = newsItems.slice(1);
 
   return (
-    <section className="py-16 md:py-20 bg-section-light">
-      <div className="container">
+    <section className="py-16 md:py-20 bg-muted relative overflow-hidden">
+      {/* Motif background subtil */}
+      <div
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `url(${motifIGF})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+
+      <div className="container relative z-10">
         {/* Section header */}
         <div className="flex items-end justify-between mb-10">
           <div>
             <span className="text-primary font-medium uppercase tracking-wider text-sm">
               Actualités
             </span>
-            <h2 className="font-heading text-3xl md:text-4xl mt-2">À la une</h2>
+            <h2 className="font-heading text-3xl md:text-4xl mt-2 text-foreground">À la une</h2>
           </div>
           <Link
             to="/actualites"
@@ -80,19 +91,19 @@ const NewsSection = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Featured news */}
-          <Link to={`/actualites/${featuredNews.slug}`} className="news-card group">
-            <div className="news-card-image aspect-[4/3]">
+          <Link to={`/actualites/${featuredNews.slug}`} className="group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+            <div className="aspect-[4/3] overflow-hidden">
               <img
                 src={featuredNews.image}
                 alt={featuredNews.title}
-                className="h-full w-full object-cover"
+                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
             <div className="p-6">
-              <span className="inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-medium uppercase tracking-wider mb-3">
+              <span className="inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-medium uppercase tracking-wider mb-3 rounded">
                 {featuredNews.category}
               </span>
-              <h3 className="font-heading text-2xl mb-3 group-hover:text-primary transition-colors">
+              <h3 className="font-heading text-2xl mb-3 group-hover:text-primary transition-colors text-foreground">
                 {featuredNews.title}
               </h3>
               <p className="text-muted-foreground mb-4 line-clamp-3">
@@ -106,14 +117,14 @@ const NewsSection = () => {
           </Link>
 
           {/* Other news */}
-          <div className="space-y-6">
+          <div className="space-y-4">
             {otherNews.map((news) => (
               <Link
                 key={news.id}
                 to={`/actualites/${news.slug}`}
-                className="news-card flex gap-4 group"
+                className="flex gap-4 group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 p-3"
               >
-                <div className="w-32 h-24 md:w-40 md:h-28 flex-shrink-0 overflow-hidden">
+                <div className="w-32 h-24 md:w-40 md:h-28 flex-shrink-0 overflow-hidden rounded-lg">
                   <img
                     src={news.image}
                     alt={news.title}
@@ -124,7 +135,7 @@ const NewsSection = () => {
                   <span className="text-xs font-medium uppercase tracking-wider text-primary">
                     {news.category}
                   </span>
-                  <h4 className="font-heading text-lg mt-1 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                  <h4 className="font-heading text-lg mt-1 mb-2 group-hover:text-primary transition-colors line-clamp-2 text-foreground">
                     {news.title}
                   </h4>
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
