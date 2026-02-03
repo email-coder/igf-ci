@@ -1,38 +1,48 @@
 import { Quote } from "lucide-react";
 import inspectrice from "@/assets/inspectrice-generale.png";
-import motifIGF from "@/assets/motif-igf-vert.png";
+import motifIGF from "@/assets/motif-igf-bande.png";
 
 const DirectorSection = () => {
   return (
     <section className="py-16 md:py-20 bg-primary/5 relative overflow-hidden">
-      {/* Motif background */}
+      {/* Motif top and bottom */}
       <div
-        className="absolute inset-0 opacity-[0.08]"
+        className="absolute top-0 left-0 right-0 h-10 opacity-40"
         style={{
           backgroundImage: `url(${motifIGF})`,
-          backgroundSize: "cover",
+          backgroundSize: "auto 100%",
           backgroundPosition: "center",
+          backgroundRepeat: "repeat-x",
+        }}
+      />
+      <div
+        className="absolute bottom-0 left-0 right-0 h-10 opacity-40"
+        style={{
+          backgroundImage: `url(${motifIGF})`,
+          backgroundSize: "auto 100%",
+          backgroundPosition: "center",
+          backgroundRepeat: "repeat-x",
         }}
       />
 
       <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
           {/* Image */}
-          <div className="lg:col-span-2">
-            <div className="relative max-w-sm mx-auto lg:mx-0">
-              <div className="absolute -inset-4 border-2 border-primary/30 rounded-lg" />
-              <div className="absolute -inset-2 bg-primary/10 rounded-lg" />
+          <div className="lg:col-span-2 animate-fade-in">
+            <div className="relative max-w-sm mx-auto lg:mx-0 group">
+              <div className="absolute -inset-4 border-2 border-primary/30 rounded-lg transition-all group-hover:border-primary/50 group-hover:-inset-5" />
+              <div className="absolute -inset-2 bg-primary/10 rounded-lg transition-all group-hover:bg-primary/15" />
               <img
                 src={inspectrice}
                 alt="Inspecteur Général des Finances"
-                className="relative w-full rounded-lg shadow-xl"
+                className="relative w-full rounded-lg shadow-xl transition-transform group-hover:scale-[1.02]"
               />
             </div>
           </div>
 
           {/* Content */}
-          <div className="lg:col-span-3">
-            <Quote className="h-12 w-12 text-primary mb-6 opacity-50" />
+          <div className="lg:col-span-3 animate-slide-up">
+            <Quote className="h-12 w-12 text-primary mb-6 opacity-50 animate-float" />
             <blockquote className="font-heading text-2xl md:text-3xl italic leading-relaxed mb-8 text-foreground">
               "L'Inspection Générale des Finances s'est fixée comme ambition de fournir 
               à ses clients et partenaires une prestation de qualité en vue de satisfaire 

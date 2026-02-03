@@ -4,7 +4,7 @@ import actuCooperationBenin from "@/assets/actu-cooperation-benin.png";
 import actuFormationEvaluation from "@/assets/actu-formation-evaluation.png";
 import actuVoyageMaroc from "@/assets/actu-voyage-maroc.png";
 import actuAuditPtua from "@/assets/actu-audit-ptua.png";
-import motifIGF from "@/assets/motif-igf.png";
+import motifIGF from "@/assets/motif-igf-bande.png";
 
 interface NewsItem {
   id: number;
@@ -61,13 +61,14 @@ const NewsSection = () => {
 
   return (
     <section className="py-16 md:py-20 bg-muted relative overflow-hidden">
-      {/* Motif background subtil */}
+      {/* Motif top */}
       <div
-        className="absolute inset-0 opacity-[0.02]"
+        className="absolute top-0 left-0 right-0 h-8 opacity-30"
         style={{
           backgroundImage: `url(${motifIGF})`,
-          backgroundSize: "cover",
+          backgroundSize: "auto 100%",
           backgroundPosition: "center",
+          backgroundRepeat: "repeat-x",
         }}
       />
 
@@ -91,16 +92,16 @@ const NewsSection = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Featured news */}
-          <Link to={`/actualites/${featuredNews.slug}`} className="group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+          <Link to={`/actualites/${featuredNews.slug}`} className="group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
             <div className="aspect-[4/3] overflow-hidden">
               <img
                 src={featuredNews.image}
                 alt={featuredNews.title}
-                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
             </div>
             <div className="p-6">
-              <span className="inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-medium uppercase tracking-wider mb-3 rounded">
+              <span className="inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-medium uppercase tracking-wider mb-3 rounded animate-pulse-glow">
                 {featuredNews.category}
               </span>
               <h3 className="font-heading text-2xl mb-3 group-hover:text-primary transition-colors text-foreground">

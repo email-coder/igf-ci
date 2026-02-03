@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Search, ChevronDown, ChevronRight } from "lucide-react";
-import logoIGF from "@/assets/logo-igf-couleur.png";
-import motifIGF from "@/assets/motif-igf.png";
+import logoIGF from "@/assets/logo-igf.png";
+import motifIGF from "@/assets/motif-igf-bande.png";
 import SearchModal from "./SearchModal";
 
 const navigationItems = [
@@ -38,6 +38,7 @@ const navigationItems = [
     ],
   },
   { label: "Documents", href: "/documents" },
+  { label: "Galerie", href: "/galerie" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -59,33 +60,33 @@ const Header = () => {
         <div className="bg-white relative overflow-hidden border-b border-border">
           {/* Motif background subtil */}
           <div
-            className="absolute inset-0 opacity-[0.03]"
+            className="absolute right-0 top-0 bottom-0 w-1/3 opacity-20"
             style={{
               backgroundImage: `url(${motifIGF})`,
-              backgroundSize: "auto 100%",
-              backgroundPosition: "right center",
+              backgroundSize: "cover",
+              backgroundPosition: "left center",
               backgroundRepeat: "no-repeat",
             }}
           />
           
-          <div className="container relative z-10 flex items-center justify-between py-6">
+          <div className="container relative z-10 flex items-center justify-between py-4 md:py-6">
             {/* Logo + Title */}
-            <Link to="/" className="flex items-center gap-6">
+            <Link to="/" className="flex items-center gap-4 md:gap-6 group">
               <img
                 src={logoIGF}
                 alt="Inspection Générale des Finances"
-                className="h-24 md:h-28 lg:h-32 w-auto"
+                className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto transition-transform group-hover:scale-105"
               />
-              <div className="hidden md:block border-l-2 border-primary/30 pl-6">
-                <span className="block text-muted-foreground text-sm">République de Côte d'Ivoire</span>
-                <span className="block text-foreground font-heading text-xl lg:text-2xl">
+              <div className="hidden md:block border-l-2 border-primary/30 pl-4 lg:pl-6">
+                <span className="block text-muted-foreground text-xs lg:text-sm">République de Côte d'Ivoire</span>
+                <span className="block text-foreground font-heading text-lg lg:text-xl xl:text-2xl">
                   Ministère des Finances et du Budget
                 </span>
               </div>
             </Link>
 
             {/* Right side links */}
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3 md:gap-6">
               <div className="hidden lg:flex items-center gap-4 text-sm">
                 <Link to="/actualites" className="text-muted-foreground hover:text-primary transition-colors">
                   Actualités
@@ -99,10 +100,10 @@ const Header = () => {
               {/* Search button */}
               <button
                 onClick={() => setIsSearchOpen(true)}
-                className="p-3 hover:bg-accent rounded-full transition-colors border border-border"
+                className="p-2 md:p-3 hover:bg-accent rounded-full transition-all border border-border hover:border-primary hover:scale-105"
                 aria-label="Rechercher"
               >
-                <Search className="h-5 w-5 text-foreground" />
+                <Search className="h-4 w-4 md:h-5 md:w-5 text-foreground" />
               </button>
 
               {/* Mobile menu button */}
@@ -121,15 +122,19 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Slogan banner */}
-        <div className="bg-primary text-primary-foreground py-2 text-center">
-          <p className="font-heading text-sm md:text-base italic">
-            "Un instrument d'appui à la promotion de la bonne gouvernance économique et financière"
-          </p>
-        </div>
+        {/* Motif banner */}
+        <div 
+          className="h-8 md:h-10"
+          style={{
+            backgroundImage: `url(${motifIGF})`,
+            backgroundSize: "auto 100%",
+            backgroundPosition: "center",
+            backgroundRepeat: "repeat-x",
+          }}
+        />
 
         {/* Main navigation - fond léger */}
-        <nav className="bg-muted hidden lg:block border-b border-border">
+        <nav className="bg-muted hidden lg:block border-b border-border shadow-sm">
           <div className="container flex items-center justify-center">
             {navigationItems.map((item) => (
               <div
@@ -140,12 +145,12 @@ const Header = () => {
               >
                 <Link
                   to={item.href}
-                  className={`flex items-center gap-1 px-5 py-4 text-sm font-medium uppercase tracking-wider transition-colors hover:text-primary ${
-                    location.pathname === item.href ? "text-primary" : "text-foreground"
+                  className={`flex items-center gap-1 px-4 xl:px-5 py-4 text-sm font-medium uppercase tracking-wider transition-all hover:text-primary hover:bg-accent/50 ${
+                    location.pathname === item.href ? "text-primary bg-accent/30" : "text-foreground"
                   }`}
                 >
                   {item.label}
-                  {item.children && <ChevronDown className="h-4 w-4" />}
+                  {item.children && <ChevronDown className="h-4 w-4 transition-transform" />}
                 </Link>
 
                 {/* Dropdown */}
@@ -155,7 +160,7 @@ const Header = () => {
                       <Link
                         key={child.label}
                         to={child.href}
-                        className="block px-4 py-3 text-sm text-foreground hover:bg-accent hover:text-primary transition-colors border-l-2 border-transparent hover:border-primary"
+                        className="block px-4 py-3 text-sm text-foreground hover:bg-accent hover:text-primary transition-all border-l-2 border-transparent hover:border-primary"
                       >
                         {child.label}
                       </Link>
@@ -169,7 +174,7 @@ const Header = () => {
 
         {/* Mobile Navigation - Menu accordéon */}
         {isMenuOpen && (
-          <div className="lg:hidden fixed inset-0 top-[200px] bg-background z-50 overflow-y-auto animate-fade-in">
+          <div className="lg:hidden fixed inset-0 top-[140px] bg-background z-50 overflow-y-auto animate-fade-in">
             <nav className="container py-4">
               {navigationItems.map((item) => (
                 <div key={item.label} className="border-b border-border">

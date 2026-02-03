@@ -6,6 +6,7 @@ import QuickAccessSection from "@/components/home/QuickAccessSection";
 import PublicationsSection from "@/components/home/PublicationsSection";
 import DirectorSection from "@/components/home/DirectorSection";
 import OrganizationTabs from "@/components/home/OrganizationTabs";
+import FAQSection from "@/components/home/FAQSection";
 
 const Index = () => {
   return (
@@ -30,6 +31,9 @@ const Index = () => {
 
       {/* Publications */}
       <PublicationsSection />
+
+      {/* FAQ Section */}
+      <FAQSection />
     </Layout>
   );
 };

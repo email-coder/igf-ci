@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import heroAbidjan from "@/assets/hero-abidjan-3.jpg";
 
 const AboutSection = () => {
   return (
@@ -7,7 +8,7 @@ const AboutSection = () => {
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <div>
+          <div className="animate-fade-in">
             <span className="text-primary font-medium uppercase tracking-wider text-sm">
               À propos
             </span>
@@ -29,32 +30,32 @@ const AboutSection = () => {
             </p>
             <Link
               to="/presentation"
-              className="btn-institutional text-primary border-primary"
+              className="btn-institutional text-primary border-primary group"
             >
               En savoir plus
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
           {/* Image with stats */}
-          <div className="relative">
+          <div className="relative animate-slide-in-right">
             <img
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=500&fit=crop"
-              alt="Bâtiment institutionnel"
-              className="w-full h-[400px] object-cover"
+              src={heroAbidjan}
+              alt="Quartier des affaires d'Abidjan"
+              className="w-full h-[400px] object-cover shadow-xl hover:shadow-2xl transition-shadow duration-500"
             />
             {/* Stats overlay */}
-            <div className="absolute -bottom-8 left-8 right-8 bg-section-dark p-8 grid grid-cols-3 gap-4">
-              <div className="stat-item text-hero-foreground">
-                <div className="font-heading text-3xl md:text-4xl font-bold text-primary">25+</div>
+            <div className="absolute -bottom-8 left-8 right-8 bg-section-dark p-8 grid grid-cols-3 gap-4 shadow-lg">
+              <div className="stat-item text-hero-foreground group cursor-default">
+                <div className="font-heading text-3xl md:text-4xl font-bold text-primary group-hover:scale-110 transition-transform">25+</div>
                 <div className="text-xs uppercase tracking-wider text-white/70 mt-1">Années d'expertise</div>
               </div>
-              <div className="stat-item text-hero-foreground">
-                <div className="font-heading text-3xl md:text-4xl font-bold text-primary">3</div>
+              <div className="stat-item text-hero-foreground group cursor-default">
+                <div className="font-heading text-3xl md:text-4xl font-bold text-primary group-hover:scale-110 transition-transform">3</div>
                 <div className="text-xs uppercase tracking-wider text-white/70 mt-1">Divisions</div>
               </div>
-              <div className="stat-item text-hero-foreground">
-                <div className="font-heading text-3xl md:text-4xl font-bold text-primary">100+</div>
+              <div className="stat-item text-hero-foreground group cursor-default">
+                <div className="font-heading text-3xl md:text-4xl font-bold text-primary group-hover:scale-110 transition-transform">100+</div>
                 <div className="text-xs uppercase tracking-wider text-white/70 mt-1">Agents qualifiés</div>
               </div>
             </div>
