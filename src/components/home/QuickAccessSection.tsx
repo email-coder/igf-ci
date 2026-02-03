@@ -11,7 +11,7 @@ import {
   ClipboardCheck,
   Send
 } from "lucide-react";
-import motifIGF from "@/assets/motif-igf.png";
+import motifIGF from "@/assets/motif-igf-bande.png";
 
 const quickAccessItems = [
   {
@@ -55,13 +55,24 @@ const quickAccessItems = [
 const QuickAccessSection = () => {
   return (
     <section className="py-16 bg-background relative overflow-hidden">
-      {/* Motif background */}
+      {/* Motif left side */}
       <div
-        className="absolute inset-0 opacity-[0.02]"
+        className="absolute left-0 top-0 bottom-0 w-16 opacity-30"
         style={{
           backgroundImage: `url(${motifIGF})`,
-          backgroundSize: "cover",
+          backgroundSize: "100% auto",
           backgroundPosition: "center",
+          backgroundRepeat: "repeat-y",
+        }}
+      />
+      {/* Motif right side */}
+      <div
+        className="absolute right-0 top-0 bottom-0 w-16 opacity-30"
+        style={{
+          backgroundImage: `url(${motifIGF})`,
+          backgroundSize: "100% auto",
+          backgroundPosition: "center",
+          backgroundRepeat: "repeat-y",
         }}
       />
 
@@ -84,12 +95,13 @@ const QuickAccessSection = () => {
             <Link
               key={index}
               to={item.link}
-              className="group flex flex-col items-center gap-4 p-8 text-center bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
+              className="group flex flex-col items-center gap-4 p-8 text-center bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 animate-fade-in"
+              style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
                 <item.icon className="h-7 w-7" />
               </div>
-              <h3 className="font-heading text-xl text-foreground">{item.title}</h3>
+              <h3 className="font-heading text-xl text-foreground group-hover:text-primary transition-colors">{item.title}</h3>
               <p className="text-muted-foreground text-sm">{item.description}</p>
             </Link>
           ))}

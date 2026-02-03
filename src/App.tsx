@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoadingScreen from "@/components/layout/LoadingScreen";
+import AIAssistant from "@/components/chat/AIAssistant";
 import Index from "./pages/Index";
 import Presentation from "./pages/Presentation";
 import Missions from "./pages/Missions";
@@ -13,6 +14,11 @@ import Publications from "./pages/Publications";
 import Documents from "./pages/Documents";
 import Contact from "./pages/Contact";
 import Plaintes from "./pages/Plaintes";
+import Galerie from "./pages/Galerie";
+import FAQ from "./pages/FAQ";
+import MentionsLegales from "./pages/MentionsLegales";
+import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
+import PlanSite from "./pages/PlanSite";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -47,6 +53,9 @@ const App = () => {
         )}
 
         <BrowserRouter>
+          {/* AI Assistant - available on all pages */}
+          <AIAssistant />
+          
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/presentation" element={<Presentation />} />
@@ -59,6 +68,11 @@ const App = () => {
             <Route path="/documents" element={<Documents />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/plaintes" element={<Plaintes />} />
+            <Route path="/galerie" element={<Galerie />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/mentions-legales" element={<MentionsLegales />} />
+            <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
+            <Route path="/plan-site" element={<PlanSite />} />
             {/* Autres pages */}
             <Route path="/mot-inspecteur" element={<Presentation />} />
             <Route path="/organisation" element={<Presentation />} />

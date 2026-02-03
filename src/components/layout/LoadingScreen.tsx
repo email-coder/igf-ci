@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import logoIGF from "@/assets/logo-igf-couleur.png";
-import motifIGF from "@/assets/motif-igf.png";
+import logoIGF from "@/assets/logo-igf.png";
+import motifIGF from "@/assets/motif-igf-bande.png";
 
 interface LoadingScreenProps {
   onLoadingComplete: () => void;
@@ -32,35 +32,36 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
         isExiting ? "opacity-0 scale-105" : "opacity-100 scale-100"
       }`}
     >
-      {/* Motif background */}
+      {/* Motif background top */}
       <div
-        className="absolute inset-0 opacity-5"
+        className="absolute top-0 left-0 right-0 h-12"
         style={{
           backgroundImage: `url(${motifIGF})`,
-          backgroundSize: "cover",
+          backgroundSize: "auto 100%",
           backgroundPosition: "center",
+          backgroundRepeat: "repeat-x",
         }}
       />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center">
+      <div className="relative z-10 flex flex-col items-center px-4">
         {/* Logo */}
         <div
           className={`mb-8 transition-all duration-1000 ${
-            progress > 10 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            progress > 10 ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-95"
           }`}
         >
           <img
             src={logoIGF}
             alt="IGF - Inspection Générale des Finances"
-            className="h-24 md:h-32 w-auto"
+            className="h-24 sm:h-28 md:h-32 w-auto"
           />
         </div>
 
         {/* Progress bar */}
-        <div className="w-64 md:w-80 h-1 bg-border rounded-full overflow-hidden">
+        <div className="w-64 md:w-80 h-1.5 bg-border rounded-full overflow-hidden">
           <div
-            className="h-full bg-primary transition-all duration-300 ease-out"
+            className="h-full bg-primary transition-all duration-300 ease-out rounded-full"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -71,12 +72,12 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
             progress > 20 ? "opacity-100" : "opacity-0"
           }`}
         >
-          Chargement...
+          Chargement... {progress}%
         </p>
 
         {/* Slogan */}
         <p
-          className={`mt-8 font-heading text-lg italic text-center text-muted-foreground max-w-md px-4 transition-all duration-700 ${
+          className={`mt-8 font-heading text-base sm:text-lg italic text-center text-muted-foreground max-w-md transition-all duration-700 ${
             progress > 50 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
@@ -84,8 +85,16 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
         </p>
       </div>
 
-      {/* Decorative elements */}
-      <div className="absolute bottom-0 left-0 right-0 h-2 bg-primary" />
+      {/* Motif background bottom */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-12"
+        style={{
+          backgroundImage: `url(${motifIGF})`,
+          backgroundSize: "auto 100%",
+          backgroundPosition: "center",
+          backgroundRepeat: "repeat-x",
+        }}
+      />
     </div>
   );
 };
