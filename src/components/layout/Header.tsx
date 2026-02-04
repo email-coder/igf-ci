@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Search, ChevronDown, ChevronRight } from "lucide-react";
 import logoIGF from "@/assets/logo-igf.png";
-import motifIGF from "@/assets/motif-igf-bande.png";
 import SearchModal from "./SearchModal";
 
 const navigationItems = [
@@ -56,18 +55,8 @@ const Header = () => {
   return (
     <>
       <header className="sticky top-0 z-50 w-full">
-        {/* Top bar - fond blanc avec motif */}
-        <div className="bg-white relative overflow-hidden border-b border-border">
-          {/* Motif background subtil */}
-          <div
-            className="absolute right-0 top-0 bottom-0 w-1/3 opacity-20"
-            style={{
-              backgroundImage: `url(${motifIGF})`,
-              backgroundSize: "cover",
-              backgroundPosition: "left center",
-              backgroundRepeat: "no-repeat",
-            }}
-          />
+        {/* Top bar - fond blanc */}
+        <div className="bg-white border-b border-border">
           
           <div className="container relative z-10 flex items-center justify-between py-4 md:py-6">
             {/* Logo + Title */}
@@ -122,16 +111,8 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Motif banner */}
-        <div 
-          className="h-8 md:h-10"
-          style={{
-            backgroundImage: `url(${motifIGF})`,
-            backgroundSize: "auto 100%",
-            backgroundPosition: "center",
-            backgroundRepeat: "repeat-x",
-          }}
-        />
+        {/* Green accent bar */}
+        <div className="h-1 bg-primary" />
 
         {/* Main navigation - fond léger */}
         <nav className="bg-muted hidden lg:block border-b border-border shadow-sm">
