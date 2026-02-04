@@ -1,29 +1,9 @@
 import { Quote } from "lucide-react";
 import inspectrice from "@/assets/inspectrice-generale.png";
-import motifIGF from "@/assets/motif-igf-bande.png";
 
 const DirectorSection = () => {
   return (
     <section className="py-16 md:py-20 bg-primary/5 relative overflow-hidden">
-      {/* Motif top and bottom */}
-      <div
-        className="absolute top-0 left-0 right-0 h-10 opacity-40"
-        style={{
-          backgroundImage: `url(${motifIGF})`,
-          backgroundSize: "auto 100%",
-          backgroundPosition: "center",
-          backgroundRepeat: "repeat-x",
-        }}
-      />
-      <div
-        className="absolute bottom-0 left-0 right-0 h-10 opacity-40"
-        style={{
-          backgroundImage: `url(${motifIGF})`,
-          backgroundSize: "auto 100%",
-          backgroundPosition: "center",
-          backgroundRepeat: "repeat-x",
-        }}
-      />
 
       <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
