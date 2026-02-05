@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { HelpCircle, ChevronRight, MessageCircle } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+ import ScrollSection from "@/components/ui/scroll-section";
 
 const faqItems = [
   {
@@ -27,7 +28,7 @@ const FAQSection = () => {
       <div className="container">
         <div className="flex flex-col lg:flex-row gap-12 items-start">
           {/* Left content */}
-          <div className="lg:w-1/3">
+           <ScrollSection animation="fade-right" className="lg:w-1/3">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-3 bg-primary/10 rounded-full">
                 <HelpCircle className="h-6 w-6 text-primary" />
@@ -55,14 +56,14 @@ const FAQSection = () => {
               <div className="flex items-center gap-3 p-4 bg-primary/5 rounded-lg border border-primary/20">
                 <MessageCircle className="h-5 w-5 text-primary flex-shrink-0" />
                 <p className="text-sm text-muted-foreground">
-                  Besoin d'aide ? Utilisez notre assistant IA en bas à droite de l'écran !
+                   Besoin d'aide ? Utilisez notre assistant IA en bas à gauche de l'écran !
                 </p>
               </div>
             </div>
-          </div>
+           </ScrollSection>
 
           {/* FAQ accordion */}
-          <div className="lg:w-2/3">
+           <ScrollSection animation="fade-left" delay={200} className="lg:w-2/3">
             <Accordion type="single" collapsible className="space-y-3">
               {faqItems.map((item, index) => (
                 <AccordionItem 
@@ -80,7 +81,7 @@ const FAQSection = () => {
                 </AccordionItem>
               ))}
             </Accordion>
-          </div>
+           </ScrollSection>
         </div>
       </div>
     </section>

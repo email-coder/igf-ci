@@ -11,6 +11,7 @@ import {
   ClipboardCheck,
   Send
 } from "lucide-react";
+ import ScrollSection from "@/components/ui/scroll-section";
 import motifIGF from "@/assets/motif-igf-bande.png";
 
 const quickAccessItems = [
@@ -77,7 +78,7 @@ const QuickAccessSection = () => {
       />
 
       <div className="container relative z-10">
-        <div className="text-center mb-12">
+         <ScrollSection className="text-center mb-12">
           <span className="text-primary font-medium uppercase tracking-wider text-sm">
             Services
           </span>
@@ -88,22 +89,26 @@ const QuickAccessSection = () => {
             L'IGF est chargée de missions de contrôle, d'audit, de conseil et de lutte contre la corruption 
             pour garantir la bonne gouvernance des finances publiques.
           </p>
-        </div>
+         </ScrollSection>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {quickAccessItems.map((item, index) => (
-            <Link
+             <ScrollSection
               key={index}
-              to={item.link}
-              className="group flex flex-col items-center gap-4 p-8 text-center bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 animate-fade-in"
-              style={{ animationDelay: `${index * 100}ms` }}
+               delay={index * 100}
+               animation="fade-up"
             >
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
-                <item.icon className="h-7 w-7" />
-              </div>
-              <h3 className="font-heading text-xl text-foreground group-hover:text-primary transition-colors">{item.title}</h3>
-              <p className="text-muted-foreground text-sm">{item.description}</p>
-            </Link>
+               <Link
+                 to={item.link}
+                 className="group flex flex-col items-center gap-4 p-8 text-center bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-xl transition-all duration-500 hover:-translate-y-2 h-full"
+               >
+                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 group-hover:scale-110 group-hover:rotate-3">
+                   <item.icon className="h-7 w-7" />
+                 </div>
+                 <h3 className="font-heading text-xl text-foreground group-hover:text-primary transition-colors">{item.title}</h3>
+                 <p className="text-muted-foreground text-sm">{item.description}</p>
+               </Link>
+             </ScrollSection>
           ))}
         </div>
       </div>

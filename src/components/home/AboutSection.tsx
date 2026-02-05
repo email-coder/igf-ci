@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+ import ScrollSection from "@/components/ui/scroll-section";
 import heroAbidjan from "@/assets/hero-abidjan-3.jpg";
 
 const AboutSection = () => {
@@ -8,7 +9,7 @@ const AboutSection = () => {
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <div className="animate-fade-in">
+           <ScrollSection animation="fade-right">
             <span className="text-primary font-medium uppercase tracking-wider text-sm">
               À propos
             </span>
@@ -35,10 +36,10 @@ const AboutSection = () => {
               En savoir plus
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
-          </div>
+           </ScrollSection>
 
           {/* Image with stats */}
-          <div className="relative animate-slide-in-right">
+           <ScrollSection animation="fade-left" delay={200} className="relative">
             <img
               src={heroAbidjan}
               alt="Quartier des affaires d'Abidjan"
@@ -59,7 +60,7 @@ const AboutSection = () => {
                 <div className="text-xs uppercase tracking-wider text-muted-foreground mt-1">Agents qualifiés</div>
               </div>
             </div>
-          </div>
+           </ScrollSection>
         </div>
       </div>
     </section>

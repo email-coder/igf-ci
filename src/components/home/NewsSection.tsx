@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Calendar } from "lucide-react";
+ import ScrollSection from "@/components/ui/scroll-section";
 import actuCooperationBenin from "@/assets/actu-cooperation-benin.png";
 import actuFormationEvaluation from "@/assets/actu-formation-evaluation.png";
 import actuVoyageMaroc from "@/assets/actu-voyage-maroc.png";
@@ -74,7 +75,8 @@ const NewsSection = () => {
 
       <div className="container relative z-10">
         {/* Section header */}
-        <div className="flex items-end justify-between mb-10">
+         <ScrollSection>
+           <div className="flex items-end justify-between mb-10">
           <div>
             <span className="text-primary font-medium uppercase tracking-wider text-sm">
               Actualités
@@ -88,11 +90,13 @@ const NewsSection = () => {
             Toutes les actualités
             <ArrowRight className="h-4 w-4" />
           </Link>
-        </div>
+           </div>
+         </ScrollSection>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Featured news */}
-          <Link to={`/actualites/${featuredNews.slug}`} className="group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+           <ScrollSection animation="fade-right">
+             <Link to={`/actualites/${featuredNews.slug}`} className="block group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
             <div className="aspect-[4/3] overflow-hidden">
               <img
                 src={featuredNews.image}
@@ -115,10 +119,11 @@ const NewsSection = () => {
                 {featuredNews.date}
               </div>
             </div>
-          </Link>
+             </Link>
+           </ScrollSection>
 
           {/* Other news */}
-          <div className="space-y-4">
+           <ScrollSection animation="fade-left" delay={200} className="space-y-4">
             {otherNews.map((news) => (
               <Link
                 key={news.id}
@@ -146,7 +151,7 @@ const NewsSection = () => {
                 </div>
               </Link>
             ))}
-          </div>
+           </ScrollSection>
         </div>
 
         {/* Mobile link */}

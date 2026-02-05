@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, ArrowRight, Pause, Play } from "lucide-react";
 import { Link } from "react-router-dom";
+ import { useParallax } from "@/hooks/useScrollAnimation";
 import heroImage1 from "@/assets/hero-abidjan.jpg";
 import heroImage2 from "@/assets/hero-abidjan-2.webp";
 import heroImage3 from "@/assets/hero-abidjan-3.jpg";
@@ -59,6 +60,7 @@ const HeroCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
+   const parallaxOffset = useParallax(0.3);
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -80,7 +82,7 @@ const HeroCarousel = () => {
   const nextSlide = () => handleSlideChange((currentSlide + 1) % slides.length);
 
   return (
-    <section className="relative h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden">
+     <section className="relative h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden">
       {/* Slides */}
       {slides.map((slide, index) => (
         <div
@@ -90,12 +92,13 @@ const HeroCarousel = () => {
           }`}
         >
           {/* Background image */}
-          <div 
-            className="absolute inset-0"
+           <div 
+             className="absolute inset-0 transition-transform duration-100"
             style={{
               backgroundImage: `url(${slide.image})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
+               transform: `translateY(${parallaxOffset}px) scale(1.1)`,
             }}
           />
           

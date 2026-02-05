@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Search, X, FileText, Newspaper, BookOpen, File } from "lucide-react";
+ import { Search, X, FileText, Newspaper, BookOpen, File, Bot, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface SearchResult {
@@ -187,20 +187,32 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
       {/* Modal */}
       <div
         ref={modalRef}
-        className="relative w-full max-w-2xl mx-4 bg-background rounded-lg shadow-2xl overflow-hidden animate-scale-in"
+         className="relative w-full max-w-2xl mx-4 bg-background rounded-lg shadow-2xl overflow-hidden"
         style={{
           animation: "scaleIn 0.2s ease-out forwards",
         }}
       >
+         {/* Animated Bot */}
+         <div className="absolute -top-12 right-4 hidden md:block">
+           <div className="relative animate-bounce-subtle">
+             <div className="p-3 bg-primary text-primary-foreground rounded-full shadow-lg">
+               <Bot className="h-6 w-6" />
+             </div>
+             <Sparkles className="absolute -top-1 -right-1 h-4 w-4 text-primary animate-pulse" />
+           </div>
+         </div>
+ 
         {/* Search input */}
         <div className="relative border-b border-border">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+           <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
+             <Search className="h-5 w-5 text-muted-foreground" />
+           </div>
           <input
             ref={inputRef}
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Rechercher sur le site..."
+             placeholder="Rechercher des documents, actualités..."
             className="w-full pl-12 pr-12 py-4 text-lg bg-transparent outline-none placeholder:text-muted-foreground"
           />
           <button
@@ -284,7 +296,7 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
 
         {/* Footer */}
         <div className="border-t border-border px-4 py-3 flex items-center justify-between text-xs text-muted-foreground">
-          <div className="flex items-center gap-4">
+           <div className="flex items-center gap-4 flex-wrap">
             <span>
               <kbd className="px-1.5 py-0.5 bg-muted rounded text-xs">↑↓</kbd> Navigation
             </span>
@@ -295,7 +307,10 @@ const SearchModal = ({ isOpen, onClose }: SearchModalProps) => {
               <kbd className="px-1.5 py-0.5 bg-muted rounded text-xs">Esc</kbd> Fermer
             </span>
           </div>
-          <span>{results.length} résultat(s)</span>
+           <div className="flex items-center gap-2">
+             <Bot className="h-3 w-3 text-primary" />
+             <span>{results.length} résultat(s)</span>
+           </div>
         </div>
       </div>
     </div>
