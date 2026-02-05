@@ -1,8 +1,29 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Search, ChevronDown, ChevronRight } from "lucide-react";
+import { Menu, X, Search, ChevronDown, ChevronRight, Info } from "lucide-react";
 import logoIGF from "@/assets/logo-igf.png";
 import SearchModal from "./SearchModal";
+
+// News ticker component
+const NewsTicker = () => {
+  return (
+    <div className="bg-primary text-primary-foreground py-2.5 overflow-hidden">
+      <div className="container">
+        <div className="flex items-center gap-4">
+          <div className="flex-shrink-0 flex items-center gap-2 bg-white/20 px-3 py-1 rounded">
+            <Info className="h-4 w-4" />
+            <span className="text-sm font-medium uppercase tracking-wide">Info</span>
+          </div>
+          <div className="overflow-hidden flex-1">
+            <p className="text-sm md:text-base font-medium italic whitespace-nowrap animate-marquee">
+              "Un instrument d'appui à la promotion de la bonne gouvernance économique et financière" — Atelier de formation sur « La Détection des soupçons d'actes de fraude et d'infractions financières lors de la conduite des travaux d'audits » offerte par la GIZ, du 02 au 04 février et le 06 février 2026, à l'hôtel Tiama Abidjan-Plateau.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const navigationItems = [
   { label: "Accueil", href: "/" },
@@ -152,6 +173,9 @@ const Header = () => {
             ))}
           </div>
         </nav>
+
+        {/* News Ticker */}
+        <NewsTicker />
 
         {/* Mobile Navigation - Menu accordéon */}
         {isMenuOpen && (

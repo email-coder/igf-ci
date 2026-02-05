@@ -45,18 +45,18 @@ const AboutSection = () => {
               className="w-full h-[400px] object-cover shadow-xl hover:shadow-2xl transition-shadow duration-500"
             />
             {/* Stats overlay */}
-            <div className="absolute -bottom-8 left-8 right-8 bg-section-dark p-8 grid grid-cols-3 gap-4 shadow-lg">
-              <div className="stat-item text-hero-foreground group cursor-default">
+            <div className="absolute -bottom-8 left-8 right-8 bg-[#F4F4F4] p-8 grid grid-cols-3 gap-4 shadow-lg border border-border">
+              <div className="stat-item group cursor-default">
                 <div className="font-heading text-3xl md:text-4xl font-bold text-primary group-hover:scale-110 transition-transform">25+</div>
-                <div className="text-xs uppercase tracking-wider text-white/70 mt-1">Années d'expertise</div>
+                <div className="text-xs uppercase tracking-wider text-muted-foreground mt-1">Années d'expertise</div>
               </div>
-              <div className="stat-item text-hero-foreground group cursor-default">
+              <div className="stat-item group cursor-default">
                 <div className="font-heading text-3xl md:text-4xl font-bold text-primary group-hover:scale-110 transition-transform">3</div>
-                <div className="text-xs uppercase tracking-wider text-white/70 mt-1">Divisions</div>
+                <div className="text-xs uppercase tracking-wider text-muted-foreground mt-1">Divisions</div>
               </div>
-              <div className="stat-item text-hero-foreground group cursor-default">
+              <div className="stat-item group cursor-default">
                 <div className="font-heading text-3xl md:text-4xl font-bold text-primary group-hover:scale-110 transition-transform">100+</div>
-                <div className="text-xs uppercase tracking-wider text-white/70 mt-1">Agents qualifiés</div>
+                <div className="text-xs uppercase tracking-wider text-muted-foreground mt-1">Agents qualifiés</div>
               </div>
             </div>
           </div>
