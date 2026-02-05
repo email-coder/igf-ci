@@ -166,11 +166,21 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Map placeholder */}
-        <div className="mt-16">
-          <div className="aspect-[21/9] bg-muted flex items-center justify-center">
-            <p className="text-muted-foreground">Carte interactive - Plateau, Abidjan</p>
-          </div>
+         {/* Google Maps */}
+         <div className="mt-16">
+           <h2 className="font-heading text-2xl mb-6">Notre localisation</h2>
+           <div className="aspect-[21/9] bg-muted overflow-hidden rounded-lg border border-border">
+             <iframe
+               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.335!2d-4.0208!3d5.3214!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc1eb9e1a4e0e6d%3A0x1d5e8e8e8e8e8e8e!2sLe%20Plateau%2C%20Abidjan%2C%20C%C3%B4te%20d&#39;Ivoire!5e0!3m2!1sfr!2sfr!4v1707123456789!5m2!1sfr!2sfr"
+               width="100%"
+               height="100%"
+               style={{ border: 0, minHeight: "350px" }}
+               allowFullScreen
+               loading="lazy"
+               referrerPolicy="no-referrer-when-downgrade"
+               title="Localisation IGF - Plateau, Abidjan"
+             />
+           </div>
         </div>
       </div>
     </Layout>

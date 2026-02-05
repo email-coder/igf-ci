@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+ import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Bot, User, Loader2, FileText, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -152,21 +152,32 @@ const AIAssistant = () => {
 
   return (
     <>
-      {/* Floating button */}
-      <button
-        onClick={() => setIsOpen(true)}
-        className={`fixed bottom-6 right-6 z-50 p-4 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 ${
-          isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"
-        }`}
-        aria-label="Ouvrir l'assistant IA"
-      >
-        <MessageCircle className="h-6 w-6" />
-        <span className="absolute -top-1 -right-1 w-4 h-4 bg-destructive rounded-full animate-pulse" />
-      </button>
+       {/* Floating button - bottom left with animation */}
+       <div
+         className={`fixed bottom-6 left-6 z-50 transition-all duration-300 ${
+           isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"
+         }`}
+       >
+         <button
+           onClick={() => setIsOpen(true)}
+           className="relative p-4 bg-primary text-primary-foreground rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110 animate-bounce-subtle"
+           aria-label="Ouvrir l'assistant IA"
+         >
+           <Bot className="h-6 w-6" />
+           <span className="absolute -top-1 -right-1 w-4 h-4 bg-destructive rounded-full animate-pulse" />
+           {/* Ripple effect */}
+           <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20" />
+         </button>
+         {/* Helper text */}
+         <div className="absolute left-full ml-3 top-1/2 -translate-y-1/2 bg-card border border-border px-3 py-1.5 rounded-lg shadow-md whitespace-nowrap text-sm font-medium animate-fade-in hidden md:block">
+           Besoin d'aide ?
+           <span className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-3 h-3 bg-card border-l border-b border-border rotate-45" />
+         </div>
+       </div>
 
       {/* Chat window */}
       <div
-        className={`fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-48px)] bg-card border border-border rounded-2xl shadow-2xl transition-all duration-300 ${
+         className={`fixed bottom-6 left-6 z-50 w-[380px] max-w-[calc(100vw-48px)] bg-card border border-border rounded-2xl shadow-2xl transition-all duration-300 ${
           isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"
         }`}
       >

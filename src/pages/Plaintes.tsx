@@ -142,9 +142,12 @@ const Plaintes = () => {
                   onValueChange={(value: "anonyme" | "identifie") => setFormData({ ...formData, mode: value })}
                   className="grid grid-cols-1 md:grid-cols-2 gap-4"
                 >
-                  <div className={`flex items-start gap-3 p-4 border rounded-lg cursor-pointer transition-all ${formData.mode === "anonyme" ? "border-primary bg-primary/5" : "border-border bg-background hover:border-primary/50"}`}>
+                   <label 
+                     htmlFor="anonyme"
+                     className={`flex items-start gap-3 p-4 border rounded-lg cursor-pointer transition-all ${formData.mode === "anonyme" ? "border-primary bg-primary/5" : "border-border bg-background hover:border-primary/50"}`}
+                   >
                     <RadioGroupItem value="anonyme" id="anonyme" className="mt-1" />
-                    <Label htmlFor="anonyme" className="cursor-pointer flex-1">
+                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <UserX className="h-4 w-4 text-primary" />
                         <span className="font-medium">Anonyme</span>
@@ -152,11 +155,14 @@ const Plaintes = () => {
                       <p className="text-sm text-muted-foreground">
                         Votre identité restera confidentielle
                       </p>
-                    </Label>
-                  </div>
-                  <div className={`flex items-start gap-3 p-4 border rounded-lg cursor-pointer transition-all ${formData.mode === "identifie" ? "border-primary bg-primary/5" : "border-border bg-background hover:border-primary/50"}`}>
+                     </div>
+                   </label>
+                   <label 
+                     htmlFor="identifie"
+                     className={`flex items-start gap-3 p-4 border rounded-lg cursor-pointer transition-all ${formData.mode === "identifie" ? "border-primary bg-primary/5" : "border-border bg-background hover:border-primary/50"}`}
+                   >
                     <RadioGroupItem value="identifie" id="identifie" className="mt-1" />
-                    <Label htmlFor="identifie" className="cursor-pointer flex-1">
+                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <User className="h-4 w-4 text-primary" />
                         <span className="font-medium">Identifié</span>
@@ -164,8 +170,8 @@ const Plaintes = () => {
                       <p className="text-sm text-muted-foreground">
                         Recevoir un suivi personnalisé
                       </p>
-                    </Label>
-                  </div>
+                     </div>
+                   </label>
                 </RadioGroup>
               </div>
 

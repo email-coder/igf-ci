@@ -345,4 +345,49 @@
   .delay-400 {
     animation-delay: 400ms;
   }
+ 
+   /* Bounce subtle animation */
+   @keyframes bounce-subtle {
+     0%, 100% {
+       transform: translateY(0);
+     }
+     50% {
+       transform: translateY(-6px);
+     }
+   }
+ 
+   .animate-bounce-subtle {
+     animation: bounce-subtle 2s ease-in-out infinite;
+   }
+ 
+   /* Parallax scroll effects */
+   .parallax-slow {
+     will-change: transform;
+   }
+ 
+   /* Scroll reveal animation */
+   .scroll-reveal {
+     opacity: 0;
+     transform: translateY(30px);
+     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+   }
+ 
+   .scroll-reveal.visible {
+     opacity: 1;
+     transform: translateY(0);
+   }
+ 
+   /* Stagger children animation */
+   .stagger-children > * {
+     opacity: 0;
+     transform: translateY(20px);
+     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+   }
+ 
+   .stagger-children.visible > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: translateY(0); }
+   .stagger-children.visible > *:nth-child(2) { transition-delay: 100ms; opacity: 1; transform: translateY(0); }
+   .stagger-children.visible > *:nth-child(3) { transition-delay: 200ms; opacity: 1; transform: translateY(0); }
+   .stagger-children.visible > *:nth-child(4) { transition-delay: 300ms; opacity: 1; transform: translateY(0); }
+   .stagger-children.visible > *:nth-child(5) { transition-delay: 400ms; opacity: 1; transform: translateY(0); }
+   .stagger-children.visible > *:nth-child(6) { transition-delay: 500ms; opacity: 1; transform: translateY(0); }
 }
