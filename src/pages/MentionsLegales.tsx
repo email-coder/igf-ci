@@ -1,7 +1,6 @@
 import Layout from "@/components/layout/Layout";
 import { Link } from "react-router-dom";
 import { ChevronRight, FileText, Scale, Shield, Building, Users, Info } from "lucide-react";
-import motifIGF from "@/assets/motif-igf-bande.png";
 
 const MentionsLegales = () => {
   return (
@@ -18,16 +17,8 @@ const MentionsLegales = () => {
       </div>
 
       {/* Header */}
-      <div className="bg-section-dark text-hero-foreground py-16 relative overflow-hidden">
-        <div
-          className="absolute right-0 top-0 bottom-0 w-1/3 opacity-20"
-          style={{
-            backgroundImage: `url(${motifIGF})`,
-            backgroundSize: "cover",
-            backgroundPosition: "left center",
-          }}
-        />
-        <div className="container relative z-10">
+      <div className="bg-section-dark text-hero-foreground py-16">
+        <div className="container">
           <h1 className="font-heading text-4xl md:text-5xl mb-4 animate-fade-in">
             Mentions Légales
           </h1>

@@ -14,16 +14,290 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      articles: {
+        Row: {
+          author_id: string | null
+          category: string
+          content: string | null
+          cover_image: string | null
+          created_at: string
+          excerpt: string | null
+          id: string
+          published_at: string | null
+          slug: string
+          status: Database["public"]["Enums"]["content_status"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author_id?: string | null
+          category?: string
+          content?: string | null
+          cover_image?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          published_at?: string | null
+          slug: string
+          status?: Database["public"]["Enums"]["content_status"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string | null
+          category?: string
+          content?: string | null
+          cover_image?: string | null
+          created_at?: string
+          excerpt?: string | null
+          id?: string
+          published_at?: string | null
+          slug?: string
+          status?: Database["public"]["Enums"]["content_status"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      complaints: {
+        Row: {
+          admin_notes: string | null
+          assigned_to: string | null
+          complainant_email: string | null
+          complainant_name: string | null
+          complainant_phone: string | null
+          created_at: string
+          description: string
+          id: string
+          is_anonymous: boolean | null
+          status: Database["public"]["Enums"]["complaint_status"]
+          subject: string
+          tracking_number: string
+          updated_at: string
+        }
+        Insert: {
+          admin_notes?: string | null
+          assigned_to?: string | null
+          complainant_email?: string | null
+          complainant_name?: string | null
+          complainant_phone?: string | null
+          created_at?: string
+          description: string
+          id?: string
+          is_anonymous?: boolean | null
+          status?: Database["public"]["Enums"]["complaint_status"]
+          subject: string
+          tracking_number: string
+          updated_at?: string
+        }
+        Update: {
+          admin_notes?: string | null
+          assigned_to?: string | null
+          complainant_email?: string | null
+          complainant_name?: string | null
+          complainant_phone?: string | null
+          created_at?: string
+          description?: string
+          id?: string
+          is_anonymous?: boolean | null
+          status?: Database["public"]["Enums"]["complaint_status"]
+          subject?: string
+          tracking_number?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      documents: {
+        Row: {
+          author_id: string | null
+          category: string
+          cover_url: string | null
+          created_at: string
+          description: string | null
+          file_size: string | null
+          file_type: string | null
+          file_url: string | null
+          id: string
+          pages: number | null
+          published_at: string | null
+          status: Database["public"]["Enums"]["content_status"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author_id?: string | null
+          category?: string
+          cover_url?: string | null
+          created_at?: string
+          description?: string | null
+          file_size?: string | null
+          file_type?: string | null
+          file_url?: string | null
+          id?: string
+          pages?: number | null
+          published_at?: string | null
+          status?: Database["public"]["Enums"]["content_status"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string | null
+          category?: string
+          cover_url?: string | null
+          created_at?: string
+          description?: string | null
+          file_size?: string | null
+          file_type?: string | null
+          file_url?: string | null
+          id?: string
+          pages?: number | null
+          published_at?: string | null
+          status?: Database["public"]["Enums"]["content_status"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      gallery_photos: {
+        Row: {
+          author_id: string | null
+          category: string
+          created_at: string
+          date: string | null
+          description: string | null
+          id: string
+          src: string
+          title: string
+          year: number
+        }
+        Insert: {
+          author_id?: string | null
+          category?: string
+          created_at?: string
+          date?: string | null
+          description?: string | null
+          id?: string
+          src: string
+          title: string
+          year?: number
+        }
+        Update: {
+          author_id?: string | null
+          category?: string
+          created_at?: string
+          date?: string | null
+          description?: string | null
+          id?: string
+          src?: string
+          title?: string
+          year?: number
+        }
+        Relationships: []
+      }
+      pages: {
+        Row: {
+          author_id: string | null
+          content: string | null
+          created_at: string
+          id: string
+          meta_description: string | null
+          slug: string
+          status: Database["public"]["Enums"]["content_status"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author_id?: string | null
+          content?: string | null
+          created_at?: string
+          id?: string
+          meta_description?: string | null
+          slug: string
+          status?: Database["public"]["Enums"]["content_status"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string | null
+          content?: string | null
+          created_at?: string
+          id?: string
+          meta_description?: string | null
+          slug?: string
+          status?: Database["public"]["Enums"]["content_status"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_staff: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "super_admin" | "editor" | "moderator"
+      complaint_status:
+        | "received"
+        | "in_review"
+        | "investigating"
+        | "resolved"
+        | "rejected"
+      content_status: "draft" | "published" | "archived"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +424,16 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["super_admin", "editor", "moderator"],
+      complaint_status: [
+        "received",
+        "in_review",
+        "investigating",
+        "resolved",
+        "rejected",
+      ],
+      content_status: ["draft", "published", "archived"],
+    },
   },
 } as const

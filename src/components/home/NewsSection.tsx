@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Calendar } from "lucide-react";
- import ScrollSection from "@/components/ui/scroll-section";
+import ScrollSection from "@/components/ui/scroll-section";
 import actuCooperationBenin from "@/assets/actu-cooperation-benin.png";
 import actuFormationEvaluation from "@/assets/actu-formation-evaluation.png";
 import actuVoyageMaroc from "@/assets/actu-voyage-maroc.png";
 import actuAuditPtua from "@/assets/actu-audit-ptua.png";
-import motifIGF from "@/assets/motif-igf-bande.png";
 
 interface NewsItem {
   id: number;
@@ -62,88 +61,47 @@ const NewsSection = () => {
 
   return (
     <section className="py-16 md:py-20 bg-muted relative overflow-hidden">
-      {/* Motif top */}
-      <div
-        className="absolute top-0 left-0 right-0 h-8 opacity-30"
-        style={{
-          backgroundImage: `url(${motifIGF})`,
-          backgroundSize: "auto 100%",
-          backgroundPosition: "center",
-          backgroundRepeat: "repeat-x",
-        }}
-      />
-
       <div className="container relative z-10">
-        {/* Section header */}
-         <ScrollSection>
-           <div className="flex items-end justify-between mb-10">
-          <div>
-            <span className="text-primary font-medium uppercase tracking-wider text-sm">
-              Actualités
-            </span>
-            <h2 className="font-heading text-3xl md:text-4xl mt-2 text-foreground">À la une</h2>
+        <ScrollSection>
+          <div className="flex items-end justify-between mb-10">
+            <div>
+              <span className="text-primary font-medium uppercase tracking-wider text-sm">Actualités</span>
+              <h2 className="font-heading text-3xl md:text-4xl mt-2 text-foreground">À la une</h2>
+            </div>
+            <Link to="/actualites" className="hidden md:inline-flex items-center gap-2 text-primary hover:underline font-medium">
+              Toutes les actualités
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
-          <Link
-            to="/actualites"
-            className="hidden md:inline-flex items-center gap-2 text-primary hover:underline font-medium"
-          >
-            Toutes les actualités
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-           </div>
-         </ScrollSection>
+        </ScrollSection>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Featured news */}
-           <ScrollSection animation="fade-right">
-             <Link to={`/actualites/${featuredNews.slug}`} className="block group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-            <div className="aspect-[4/3] overflow-hidden">
-              <img
-                src={featuredNews.image}
-                alt={featuredNews.title}
-                className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-            </div>
-            <div className="p-6">
-              <span className="inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-medium uppercase tracking-wider mb-3 rounded animate-pulse-glow">
-                {featuredNews.category}
-              </span>
-              <h3 className="font-heading text-2xl mb-3 group-hover:text-primary transition-colors text-foreground">
-                {featuredNews.title}
-              </h3>
-              <p className="text-muted-foreground mb-4 line-clamp-3">
-                {featuredNews.excerpt}
-              </p>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Calendar className="h-4 w-4" />
-                {featuredNews.date}
+          <ScrollSection animation="fade-right">
+            <Link to={`/actualites/${featuredNews.slug}`} className="block group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img src={featuredNews.image} alt={featuredNews.title} className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
-            </div>
-             </Link>
-           </ScrollSection>
+              <div className="p-6">
+                <span className="inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-medium uppercase tracking-wider mb-3 rounded animate-pulse-glow">{featuredNews.category}</span>
+                <h3 className="font-heading text-2xl mb-3 group-hover:text-primary transition-colors text-foreground">{featuredNews.title}</h3>
+                <p className="text-muted-foreground mb-4 line-clamp-3">{featuredNews.excerpt}</p>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Calendar className="h-4 w-4" />
+                  {featuredNews.date}
+                </div>
+              </div>
+            </Link>
+          </ScrollSection>
 
-          {/* Other news */}
-           <ScrollSection animation="fade-left" delay={200} className="space-y-4">
+          <ScrollSection animation="fade-left" delay={200} className="space-y-4">
             {otherNews.map((news) => (
-              <Link
-                key={news.id}
-                to={`/actualites/${news.slug}`}
-                className="flex gap-4 group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 p-3"
-              >
+              <Link key={news.id} to={`/actualites/${news.slug}`} className="flex gap-4 group bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 p-3">
                 <div className="w-32 h-24 md:w-40 md:h-28 flex-shrink-0 overflow-hidden rounded-lg">
-                  <img
-                    src={news.image}
-                    alt={news.title}
-                    className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                  <img src={news.image} alt={news.title} className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="flex-1 py-1">
-                  <span className="text-xs font-medium uppercase tracking-wider text-primary">
-                    {news.category}
-                  </span>
-                  <h4 className="font-heading text-lg mt-1 mb-2 group-hover:text-primary transition-colors line-clamp-2 text-foreground">
-                    {news.title}
-                  </h4>
+                  <span className="text-xs font-medium uppercase tracking-wider text-primary">{news.category}</span>
+                  <h4 className="font-heading text-lg mt-1 mb-2 group-hover:text-primary transition-colors line-clamp-2 text-foreground">{news.title}</h4>
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
                     <Calendar className="h-3 w-3" />
                     {news.date}
@@ -151,15 +109,11 @@ const NewsSection = () => {
                 </div>
               </Link>
             ))}
-           </ScrollSection>
+          </ScrollSection>
         </div>
 
-        {/* Mobile link */}
         <div className="mt-8 text-center lg:hidden">
-          <Link
-            to="/actualites"
-            className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
-          >
+          <Link to="/actualites" className="inline-flex items-center gap-2 text-primary hover:underline font-medium">
             Toutes les actualités
             <ArrowRight className="h-4 w-4" />
           </Link>
