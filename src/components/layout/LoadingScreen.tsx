@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import logoIGF from "@/assets/logo-igf.png";
-import motifIGF from "@/assets/motif-igf-bande.png";
 
 interface LoadingScreenProps {
   onLoadingComplete: () => void;
@@ -32,34 +31,26 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
         isExiting ? "opacity-0 scale-105" : "opacity-100 scale-100"
       }`}
     >
-      {/* Motif background top */}
-      <div
-        className="absolute top-0 left-0 right-0 h-12"
-        style={{
-          backgroundImage: `url(${motifIGF})`,
-          backgroundSize: "auto 100%",
-          backgroundPosition: "center",
-          backgroundRepeat: "repeat-x",
-        }}
-      />
+      {/* Top green accent */}
+      <div className="absolute top-0 left-0 right-0 h-1.5 bg-primary" />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center px-4">
-        {/* Logo */}
+        {/* Logo - much larger */}
         <div
-          className={`mb-8 transition-all duration-1000 ${
+          className={`mb-10 transition-all duration-1000 ${
             progress > 10 ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-95"
           }`}
         >
           <img
             src={logoIGF}
             alt="IGF - Inspection Générale des Finances"
-            className="h-24 sm:h-28 md:h-32 w-auto"
+            className="h-36 sm:h-44 md:h-52 w-auto"
           />
         </div>
 
         {/* Progress bar */}
-        <div className="w-64 md:w-80 h-1.5 bg-border rounded-full overflow-hidden">
+        <div className="w-72 md:w-96 h-1 bg-border rounded-full overflow-hidden">
           <div
             className="h-full bg-primary transition-all duration-300 ease-out rounded-full"
             style={{ width: `${progress}%` }}
@@ -85,16 +76,8 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
         </p>
       </div>
 
-      {/* Motif background bottom */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-12"
-        style={{
-          backgroundImage: `url(${motifIGF})`,
-          backgroundSize: "auto 100%",
-          backgroundPosition: "center",
-          backgroundRepeat: "repeat-x",
-        }}
-      />
+      {/* Bottom green accent */}
+      <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-primary" />
     </div>
   );
 };
