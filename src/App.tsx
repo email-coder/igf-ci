@@ -20,6 +20,14 @@ import MentionsLegales from "./pages/MentionsLegales";
 import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
 import PlanSite from "./pages/PlanSite";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/AdminLogin";
+import AdminLayout from "./components/admin/AdminLayout";
+import Dashboard from "./pages/admin/Dashboard";
+import AdminArticles from "./pages/admin/AdminArticles";
+import AdminDocuments from "./pages/admin/AdminDocuments";
+import AdminGalerie from "./pages/admin/AdminGalerie";
+import AdminPlaintes from "./pages/admin/AdminPlaintes";
+import AdminPages from "./pages/admin/AdminPages";
 
 const queryClient = new QueryClient();
 
@@ -28,7 +36,6 @@ const App = () => {
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
-    // Check if already loaded in this session
     if (sessionStorage.getItem("igf-loaded")) {
       setIsLoading(false);
       setHasLoaded(true);
@@ -47,13 +54,11 @@ const App = () => {
         <Toaster />
         <Sonner />
         
-        {/* Loading Screen - only on first visit */}
         {isLoading && !hasLoaded && (
           <LoadingScreen onLoadingComplete={handleLoadingComplete} />
         )}
 
         <BrowserRouter>
-          {/* AI Assistant - available on all pages */}
           <AIAssistant />
           
           <Routes>
@@ -73,12 +78,22 @@ const App = () => {
             <Route path="/mentions-legales" element={<MentionsLegales />} />
             <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
             <Route path="/plan-site" element={<PlanSite />} />
-            {/* Autres pages */}
             <Route path="/mot-inspecteur" element={<Presentation />} />
             <Route path="/organisation" element={<Presentation />} />
             <Route path="/historique" element={<Presentation />} />
             <Route path="/politique-qualite" element={<Presentation />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+
+            {/* Admin */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="articles" element={<AdminArticles />} />
+              <Route path="documents" element={<AdminDocuments />} />
+              <Route path="galerie" element={<AdminGalerie />} />
+              <Route path="plaintes" element={<AdminPlaintes />} />
+              <Route path="pages" element={<AdminPages />} />
+            </Route>
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
