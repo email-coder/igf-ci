@@ -79,17 +79,17 @@ const Header = () => {
         {/* Top bar - fond blanc */}
         <div className="bg-white border-b border-border">
           
-          <div className="container relative z-10 flex items-center justify-between py-4 md:py-6">
+          <div className="container relative z-10 flex items-center justify-between py-2 md:py-3">
             {/* Logo + Title */}
-            <Link to="/" className="flex items-center gap-4 md:gap-6 group">
+            <Link to="/" className="flex items-center gap-3 md:gap-4 group">
               <img
                 src={logoIGF}
                 alt="Inspection Générale des Finances"
-                className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto transition-transform group-hover:scale-105"
+                className="h-12 sm:h-14 md:h-16 lg:h-18 w-auto transition-transform group-hover:scale-105"
               />
-              <div className="hidden md:block border-l-2 border-primary/30 pl-4 lg:pl-6">
-                <span className="block text-muted-foreground text-xs lg:text-sm">République de Côte d'Ivoire</span>
-                <span className="block text-foreground font-heading text-lg lg:text-xl xl:text-2xl">
+              <div className="hidden md:block border-l-2 border-primary/30 pl-3 lg:pl-4">
+                <span className="block text-muted-foreground text-xs">République de Côte d'Ivoire</span>
+                <span className="block text-foreground font-heading text-base lg:text-lg">
                   Ministère des Finances et du Budget
                 </span>
               </div>
@@ -147,7 +147,7 @@ const Header = () => {
               >
                 <Link
                   to={item.href}
-                  className={`flex items-center gap-1 px-4 xl:px-5 py-4 text-sm font-medium uppercase tracking-wider transition-all hover:text-primary hover:bg-accent/50 ${
+                  className={`flex items-center gap-1 px-4 xl:px-5 py-3 text-sm font-medium uppercase tracking-wider transition-all hover:text-primary hover:bg-accent/50 ${
                     location.pathname === item.href ? "text-primary bg-accent/30" : "text-foreground"
                   }`}
                 >
