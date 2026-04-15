@@ -34,7 +34,7 @@ const navigationItems = [
       { label: "L'IGF", href: "/presentation" },
       { label: "Mot de l'Inspecteur Général", href: "/mot-inspecteur" },
       { label: "Organisation", href: "/organisation" },
-      { label: "Historique", href: "/historique" },
+      { label: "Grandes Étapes", href: "/grandes-etapes" },
     ],
   },
   {

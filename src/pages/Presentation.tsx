@@ -106,8 +106,8 @@ const Presentation = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/historique" className="flex items-center justify-between text-sm hover:text-primary transition-colors">
-                    Historique
+                  <Link to="/grandes-etapes" className="flex items-center justify-between text-sm hover:text-primary transition-colors">
+                    Grandes Étapes
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </li>
