@@ -8,6 +8,7 @@ import LoadingScreen from "@/components/layout/LoadingScreen";
 import AIAssistant from "@/components/chat/AIAssistant";
 import Index from "./pages/Index";
 import Presentation from "./pages/Presentation";
+import GrandesEtapes from "./pages/GrandesEtapes";
 import Missions from "./pages/Missions";
 import Actualites from "./pages/Actualites";
 import Publications from "./pages/Publications";
@@ -80,7 +81,8 @@ const App = () => {
             <Route path="/plan-site" element={<PlanSite />} />
             <Route path="/mot-inspecteur" element={<Presentation />} />
             <Route path="/organisation" element={<Presentation />} />
-            <Route path="/historique" element={<Presentation />} />
+            <Route path="/historique" element={<GrandesEtapes />} />
+            <Route path="/grandes-etapes" element={<GrandesEtapes />} />
             <Route path="/politique-qualite" element={<Presentation />} />
 
             {/* Admin */}
