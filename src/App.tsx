@@ -29,6 +29,8 @@ import AdminDocuments from "./pages/admin/AdminDocuments";
 import AdminGalerie from "./pages/admin/AdminGalerie";
 import AdminPlaintes from "./pages/admin/AdminPlaintes";
 import AdminPages from "./pages/admin/AdminPages";
+import TextesOfficiels from "./pages/TextesOfficiels";
+import Agenda from "./pages/Agenda";
 
 const queryClient = new QueryClient();
 
@@ -84,6 +86,9 @@ const App = () => {
             <Route path="/historique" element={<GrandesEtapes />} />
             <Route path="/grandes-etapes" element={<GrandesEtapes />} />
             <Route path="/politique-qualite" element={<Presentation />} />
+            <Route path="/textes-officiels" element={<TextesOfficiels />} />
+            <Route path="/textes-officiels/:type" element={<TextesOfficiels />} />
+            <Route path="/agenda" element={<Agenda />} />
 
             {/* Admin */}
             <Route path="/admin/login" element={<AdminLogin />} />
