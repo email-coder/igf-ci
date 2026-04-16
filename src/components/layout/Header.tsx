@@ -49,15 +49,26 @@ const navigationItems = [
   },
   { label: "Actualités", href: "/actualites" },
   {
+    label: "Textes Officiels",
+    href: "/textes-officiels",
+    children: [
+      { label: "Inspection Générale des Finances", href: "/textes-officiels" },
+      { label: "Réformes des Finances Publiques", href: "/textes-officiels" },
+      { label: "MEF & MBPE", href: "/textes-officiels" },
+      { label: "Lutte contre la Corruption", href: "/textes-officiels" },
+      { label: "Autres Textes", href: "/textes-officiels" },
+    ],
+  },
+  {
     label: "Publications",
     href: "/publications",
     children: [
       { label: "Rapports d'activités", href: "/publications/rapports" },
       { label: "Programmes", href: "/publications/programmes" },
-      { label: "Textes officiels", href: "/publications/textes" },
     ],
   },
   { label: "Documents", href: "/documents" },
+  { label: "Agenda", href: "/agenda" },
   { label: "Galerie", href: "/galerie" },
   { label: "Contact", href: "/contact" },
 ];
