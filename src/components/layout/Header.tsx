@@ -238,11 +238,11 @@ const Header = () => {
             <nav className="container py-4">
               {navigationItems.map((item) => (
                 <div key={item.label} className="border-b border-border">
-                  {item.children ? (
+                  {item.children || item.megamenu ? (
                     <>
                       <button
                         onClick={() => toggleMobileDropdown(item.label)}
-                        className="w-full flex items-center justify-between py-4 text-lg font-medium hover:text-primary transition-colors"
+                        className="w-full flex items-center justify-between py-3 text-base font-medium hover:text-primary transition-colors"
                       >
                         <span>{item.label}</span>
                         <ChevronRight
@@ -252,23 +252,31 @@ const Header = () => {
                         />
                       </button>
                       {openMobileDropdown === item.label && (
-                        <div className="pb-4 pl-4 space-y-1 animate-fade-in">
-                          <Link
-                            to={item.href}
-                            className="block py-2 text-muted-foreground hover:text-primary transition-colors"
-                            onClick={() => setIsMenuOpen(false)}
-                          >
-                            Voir tout
-                          </Link>
-                          {item.children.map((child) => (
+                        <div className="pb-3 pl-4 space-y-1 animate-fade-in">
+                          {item.children?.map((child) => (
                             <Link
                               key={child.label}
                               to={child.href}
-                              className="block py-2 text-muted-foreground hover:text-primary transition-colors"
+                              className="block py-2 text-sm text-muted-foreground hover:text-primary transition-colors"
                               onClick={() => setIsMenuOpen(false)}
                             >
                               {child.label}
                             </Link>
+                          ))}
+                          {item.columns?.map((col) => (
+                            <div key={col.title} className="mt-2">
+                              <span className="block text-xs font-bold uppercase tracking-wider text-primary mb-1">{col.title}</span>
+                              {col.items.map((sub) => (
+                                <Link
+                                  key={sub.label}
+                                  to={sub.href}
+                                  className="block py-1.5 text-sm text-muted-foreground hover:text-primary transition-colors pl-2"
+                                  onClick={() => setIsMenuOpen(false)}
+                                >
+                                  {sub.label}
+                                </Link>
+                              ))}
+                            </div>
                           ))}
                         </div>
                       )}
@@ -276,7 +284,7 @@ const Header = () => {
                   ) : (
                     <Link
                       to={item.href}
-                      className="block py-4 text-lg font-medium hover:text-primary transition-colors"
+                      className="block py-3 text-base font-medium hover:text-primary transition-colors"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.label}
