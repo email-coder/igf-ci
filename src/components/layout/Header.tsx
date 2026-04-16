@@ -49,22 +49,32 @@ const navigationItems = [
   },
   { label: "Actualités", href: "/actualites" },
   {
-    label: "Textes Officiels",
-    href: "/textes-officiels",
-    children: [
-      { label: "Inspection Générale des Finances", href: "/textes-officiels" },
-      { label: "Réformes des Finances Publiques", href: "/textes-officiels" },
-      { label: "MEF & MBPE", href: "/textes-officiels" },
-      { label: "Lutte contre la Corruption", href: "/textes-officiels" },
-      { label: "Autres Textes", href: "/textes-officiels" },
-    ],
-  },
-  {
-    label: "Publications",
+    label: "Publications & Textes",
     href: "/publications",
-    children: [
-      { label: "Rapports d'activités", href: "/publications/rapports" },
-      { label: "Programmes", href: "/publications/programmes" },
+    megamenu: true,
+    columns: [
+      {
+        title: "Publications",
+        items: [
+          { label: "Rapports d'activités", href: "/publications/rapports" },
+          { label: "Programmes", href: "/publications/programmes" },
+        ],
+      },
+      {
+        title: "Textes Officiels",
+        items: [
+          { label: "Inspection Générale des Finances", href: "/textes-officiels/igf" },
+          { label: "Réformes des Finances Publiques", href: "/textes-officiels/reformes" },
+          { label: "MEF & MBPE", href: "/textes-officiels/mef-mbpe" },
+        ],
+      },
+      {
+        title: "Textes Officiels (suite)",
+        items: [
+          { label: "Lutte contre la Corruption", href: "/textes-officiels/lutte-corruption" },
+          { label: "Autres Textes", href: "/textes-officiels/autres" },
+        ],
+      },
     ],
   },
   { label: "Documents", href: "/documents" },
@@ -153,31 +163,65 @@ const Header = () => {
               <div
                 key={item.label}
                 className="relative"
-                onMouseEnter={() => item.children && setOpenDropdown(item.label)}
+                onMouseEnter={() => (item.children || item.megamenu) && setOpenDropdown(item.label)}
                 onMouseLeave={() => setOpenDropdown(null)}
               >
                 <Link
                   to={item.href}
-                  className={`flex items-center gap-1 px-4 xl:px-5 py-3 text-sm font-medium uppercase tracking-wider transition-all hover:text-primary hover:bg-accent/50 ${
+                  className={`flex items-center gap-1 px-3 xl:px-4 py-2.5 text-xs font-medium uppercase tracking-wider transition-all hover:text-primary hover:bg-accent/50 ${
                     location.pathname === item.href ? "text-primary bg-accent/30" : "text-foreground"
                   }`}
                 >
                   {item.label}
-                  {item.children && <ChevronDown className="h-4 w-4 transition-transform" />}
+                  {(item.children || item.megamenu) && <ChevronDown className="h-3.5 w-3.5 transition-transform" />}
                 </Link>
 
-                {/* Dropdown */}
-                {item.children && openDropdown === item.label && (
-                  <div className="absolute left-0 top-full w-64 bg-card border border-border shadow-xl animate-fade-in z-50">
+                {/* Standard Dropdown */}
+                {item.children && !item.megamenu && openDropdown === item.label && (
+                  <div className="absolute left-0 top-full w-60 bg-card border border-border shadow-xl animate-fade-in z-50 rounded-b">
                     {item.children.map((child) => (
                       <Link
                         key={child.label}
                         to={child.href}
-                        className="block px-4 py-3 text-sm text-foreground hover:bg-accent hover:text-primary transition-all border-l-2 border-transparent hover:border-primary"
+                        className="block px-4 py-2.5 text-xs text-foreground hover:bg-accent hover:text-primary transition-all border-l-2 border-transparent hover:border-primary"
                       >
                         {child.label}
                       </Link>
                     ))}
+                  </div>
+                )}
+
+                {/* Megamenu */}
+                {item.megamenu && openDropdown === item.label && (
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full w-[600px] bg-card border border-border shadow-2xl animate-fade-in z-50 rounded-b-lg p-5">
+                    <div className="grid grid-cols-3 gap-6">
+                      {item.columns?.map((col) => (
+                        <div key={col.title}>
+                          <h4 className="text-xs font-bold uppercase tracking-wider text-primary mb-3 pb-2 border-b border-primary/20">
+                            {col.title}
+                          </h4>
+                          <div className="space-y-1">
+                            {col.items.map((sub) => (
+                              <Link
+                                key={sub.label}
+                                to={sub.href}
+                                className="block px-2 py-1.5 text-xs text-foreground hover:bg-accent hover:text-primary transition-all rounded"
+                              >
+                                {sub.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-4 pt-3 border-t border-border flex justify-between items-center">
+                      <Link to="/publications" className="text-xs text-primary hover:underline font-medium">
+                        Toutes les publications →
+                      </Link>
+                      <Link to="/textes-officiels" className="text-xs text-primary hover:underline font-medium">
+                        Tous les textes officiels →
+                      </Link>
+                    </div>
                   </div>
                 )}
               </div>

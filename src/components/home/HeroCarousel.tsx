@@ -71,7 +71,7 @@ const HeroCarousel = () => {
   const nextSlide = () => handleSlideChange((currentSlide + 1) % slides.length);
 
   return (
-    <section className="relative h-[500px] md:h-[600px] lg:h-[650px] overflow-hidden">
+    <section className="relative h-[400px] md:h-[480px] lg:h-[520px] overflow-hidden">
       {/* Slides */}
       {slides.map((slide, index) => (
         <div
